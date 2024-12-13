@@ -4,6 +4,7 @@ namespace myProject.Models
 {
     public class Hizmetler
     {
+        [Key]
         public int hizmetID { get; set; }
         [Required]
         [Display(Name = "Hizmetin Adı")]
