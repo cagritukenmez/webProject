@@ -17,6 +17,12 @@ namespace myProject.Models
         [EmailAddress]
         [Display(Name = "Eposta :")]
         public string eposta { get; set; }
+        [Required]
+        [Phone]
+        [Display(Name = "Telefon Numarası :")]
+        [StringLength(10)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Telefon numarası sadece rakamlardan oluşmalıdır.")]
+        public string telNo { get; set; }
         public string rol { get; set; }
     }
 }

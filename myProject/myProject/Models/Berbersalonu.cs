@@ -30,7 +30,6 @@ namespace myProject.Models
         [DataType(DataType.Time)]
         [Display(Name = "Salonun Kapanma Saati")]
         public TimeOnly bitisSaati { get; set; }
-        //public List<Hizmetler> hizmetler { get; set; }
-        public List<Personeller> personeller { get; set; }
+        
     }
 }

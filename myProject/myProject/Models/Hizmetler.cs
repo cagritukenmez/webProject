@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myProject.Models
 {
@@ -16,5 +17,8 @@ namespace myProject.Models
         [Required]
         [Display(Name = "Hizmetin Fiyatı")]
         public int hizmetFiyat { get; set; }
+        [Required]
+        [ForeignKey]
+        public int salonID { get; set; }
     }
 }
