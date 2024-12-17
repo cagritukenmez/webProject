@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myProject.Models;
 
@@ -11,9 +12,11 @@ using myProject.Models;
 namespace myProject.Migrations
 {
     [DbContext(typeof(myyDbContext))]
-    partial class myyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217162649_besinciMigration")]
+    partial class besinciMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,12 +69,6 @@ namespace myProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("hizmetID"));
 
-                    b.Property<int?>("BerbersalonusalonID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonelID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PersonellerpersonelID")
                         .HasColumnType("int");
 
@@ -87,8 +84,6 @@ namespace myProject.Migrations
                         .HasColumnType("time");
 
                     b.HasKey("hizmetID");
-
-                    b.HasIndex("BerbersalonusalonID");
 
                     b.HasIndex("PersonellerpersonelID");
 
@@ -123,8 +118,7 @@ namespace myProject.Migrations
 
                     b.Property<string>("telNo")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("kullaniciID");
 
@@ -167,14 +161,21 @@ namespace myProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("randevuID"));
 
-                    b.Property<int?>("KullanıcıkullaniciID")
-                        .HasColumnType("int");
-
                     b.Property<int>("hizmetID")
                         .HasColumnType("int");
 
-                    b.Property<int>("musteriId")
+                    b.Property<string>("musteriAd")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<int>("musteriNumara")
                         .HasColumnType("int");
+
+                    b.Property<string>("musteriSoyad")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("personelID")
                         .HasColumnType("int");
@@ -187,8 +188,6 @@ namespace myProject.Migrations
 
                     b.HasKey("randevuID");
 
-                    b.HasIndex("KullanıcıkullaniciID");
-
                     b.HasIndex("hizmetID");
 
                     b.HasIndex("personelID");
@@ -196,57 +195,22 @@ namespace myProject.Migrations
                     b.ToTable("Randevular");
                 });
 
-            modelBuilder.Entity("myProject.Models.UygunOlmayanTarihSaat", b =>
-                {
-                    b.Property<int>("tarihSaatId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("tarihSaatId"));
-
-                    b.Property<int?>("PersonellerpersonelID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("personelID")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("randevuSaati")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("randevuTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("tarihSaatId");
-
-                    b.HasIndex("PersonellerpersonelID");
-
-                    b.ToTable("UygunOlmayanTarihSaat");
-                });
-
             modelBuilder.Entity("myProject.Models.Hizmetler", b =>
                 {
-                    b.HasOne("myProject.Models.Berbersalonu", null)
-                        .WithMany("Hizmetler")
-                        .HasForeignKey("BerbersalonusalonID");
-
                     b.HasOne("myProject.Models.Personeller", null)
-                        .WithMany("Hizmetler")
+                        .WithMany("hizmetler")
                         .HasForeignKey("PersonellerpersonelID");
                 });
 
             modelBuilder.Entity("myProject.Models.Personeller", b =>
                 {
                     b.HasOne("myProject.Models.Berbersalonu", null)
-                        .WithMany("Personeller")
+                        .WithMany("personeller")
                         .HasForeignKey("BerbersalonusalonID");
                 });
 
             modelBuilder.Entity("myProject.Models.Randevu", b =>
                 {
-                    b.HasOne("myProject.Models.Kullanıcı", null)
-                        .WithMany("Randevular")
-                        .HasForeignKey("KullanıcıkullaniciID");
-
                     b.HasOne("myProject.Models.Hizmetler", "hizmet")
                         .WithMany()
                         .HasForeignKey("hizmetID")
@@ -254,7 +218,7 @@ namespace myProject.Migrations
                         .IsRequired();
 
                     b.HasOne("myProject.Models.Personeller", "personel")
-                        .WithMany("Randevular")
+                        .WithMany()
                         .HasForeignKey("personelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -264,32 +228,14 @@ namespace myProject.Migrations
                     b.Navigation("personel");
                 });
 
-            modelBuilder.Entity("myProject.Models.UygunOlmayanTarihSaat", b =>
-                {
-                    b.HasOne("myProject.Models.Personeller", null)
-                        .WithMany("UygunOlmayanTarihSaatler")
-                        .HasForeignKey("PersonellerpersonelID");
-                });
-
             modelBuilder.Entity("myProject.Models.Berbersalonu", b =>
                 {
-                    b.Navigation("Hizmetler");
-
-                    b.Navigation("Personeller");
-                });
-
-            modelBuilder.Entity("myProject.Models.Kullanıcı", b =>
-                {
-                    b.Navigation("Randevular");
+                    b.Navigation("personeller");
                 });
 
             modelBuilder.Entity("myProject.Models.Personeller", b =>
                 {
-                    b.Navigation("Hizmetler");
-
-                    b.Navigation("Randevular");
-
-                    b.Navigation("UygunOlmayanTarihSaatler");
+                    b.Navigation("hizmetler");
                 });
 #pragma warning restore 612, 618
         }
