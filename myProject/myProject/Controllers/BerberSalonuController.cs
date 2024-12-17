@@ -12,7 +12,7 @@ namespace myProject.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.IsLoggedIn = false;
+            ViewBag.IsLoggedIn = false; 
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
             if(kullaniciIDCookie != null)
             {

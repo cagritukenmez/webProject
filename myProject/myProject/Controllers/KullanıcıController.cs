@@ -21,21 +21,27 @@ namespace myProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> KayitOl(string kullaniciAdi, string kullaniciSifre, string eposta)
+        public async Task<IActionResult> KayitOl(string kullaniciAdi, string kullaniciSifre, string eposta, string telNo)
         {
-            var kullanıcı = _context.Kullanıcı.FirstOrDefault(k => k.eposta == eposta);
+            var kullanıcı = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciAdi == kullaniciAdi);
+            if (kullanıcı != null)
+            {
+                TempData["msj"] = "Bu kullanıcı adı zaten kullanılıyor.";
+                return RedirectToAction("KayitOl");
+            }
+            kullanıcı = _context.Kullanıcı.FirstOrDefault(k=>k.eposta== eposta);
             if(kullanıcı != null)
             {
                 TempData["msj"] = "Bu eposta adresi zaten kullanılıyor.";
-                RedirectToAction("KayitOl");
+                return RedirectToAction("KayitOl");
             }
-            kullanıcı = _context.Kullanıcı.FirstOrDefault(k=>k.kullaniciAdi == kullaniciAdi);
-            if(kullanıcı != null)
+            kullanıcı = _context.Kullanıcı.FirstOrDefault(k => k.telNo == telNo);
+            if (kullanıcı != null)
             {
-                TempData["msj"] = "Bu kullanıcı adı zaten kullanılıyor.";
-                RedirectToAction("KayitOl");
+                TempData["msj"] = "Bu telefon numarası zaten kullanılıyor.";
+                return RedirectToAction("KayitOl");
             }
-            kullanıcı = new Kullanıcı { kullaniciAdi = kullaniciAdi, kullaniciSifre = kullaniciSifre ,eposta = eposta ,rol = "Member"};
+            kullanıcı = new Kullanıcı { kullaniciAdi = kullaniciAdi, kullaniciSifre = kullaniciSifre ,eposta = eposta ,telNo = telNo,rol = "Member"};
             _context.Kullanıcı.Add(kullanıcı);
             
             await _context.SaveChangesAsync();
@@ -48,10 +54,11 @@ namespace myProject.Controllers
             return View();
         }
         [HttpPost]
-        public  IActionResult GirisYap(string kullaniciAdi, string sifre)
+        public IActionResult GirisYap(string kullaniciAdi, string Kullanicisifre)
         {
             var kullanici = _context.Kullanıcı
-                .FirstOrDefault(k => k.kullaniciAdi == kullaniciAdi && k.kullaniciSifre == sifre);
+    .FirstOrDefault(k => k.kullaniciAdi == kullaniciAdi && k.kullaniciSifre == Kullanicisifre);
+            
             if (kullanici != null) {
                 if(kullanici.rol == "Admin")
                 {
@@ -68,5 +75,11 @@ namespace myProject.Controllers
             TempData["msj"] = "Kullanıcı adı veya şifre hatalı.";
             return View();
         }
-    }
+        public IActionResult CikisYap()
+        {
+            HttpContext.Response.Cookies.Delete("KullaniciID");
+            TempData["msj"] = "Başarılı bir şekilde çıkış yaptınız.";
+            return RedirectToAction("Index", "BerberSalonu");
+        }
+    } 
 }
