@@ -22,6 +22,11 @@ namespace myProject.Controllers
                 if(kullanici != null){
                     ViewBag.KullaniciAdi = kullanici.kullaniciAdi;
                     ViewBag.IsLoggedIn = true;
+                    if(kullanici.rol == "Admin")
+                    {
+                        ViewBag.Role = "Admin";
+                        return RedirectToAction("AdminPaneli", "BerberSalonu");
+                    }
                 }
 
 

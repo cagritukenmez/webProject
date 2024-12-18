@@ -57,7 +57,7 @@ namespace myProject.Controllers
         public IActionResult GirisYap(string kullaniciAdi, string Kullanicisifre)
         {
             var kullanici = _context.Kullanıcı
-    .FirstOrDefault(k => k.kullaniciAdi == kullaniciAdi && k.kullaniciSifre == Kullanicisifre);
+                .FirstOrDefault(k => k.kullaniciAdi == kullaniciAdi && k.kullaniciSifre == Kullanicisifre);
             
             if (kullanici != null) {
                 if(kullanici.rol == "Admin")
@@ -80,6 +80,14 @@ namespace myProject.Controllers
             HttpContext.Response.Cookies.Delete("KullaniciID");
             TempData["msj"] = "Başarılı bir şekilde çıkış yaptınız.";
             return RedirectToAction("Index", "BerberSalonu");
+        }
+        public IActionResult AdminPaneli()
+        {
+            string id = HttpContext.Request.Cookies["KullaniciID"];
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID.ToString() == id);
+            if (kullanici == null) return RedirectToAction("Index");
+            if (kullanici.rol == "Admin") return View();
+            return RedirectToAction("Index");
         }
     } 
 }
