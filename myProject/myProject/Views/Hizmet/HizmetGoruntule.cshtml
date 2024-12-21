@@ -1,0 +1,40 @@
+﻿@model List<myProject.Models.Hizmetler>
+
+@{
+    ViewData["Title"] = "HizmetGoruntule";
+}
+
+<h2> @TempData["msj"] İçin Tanımlanan Hizmetler</h2>
+<div class="alert-danger">@TempData["danger"]</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmetAdi)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmetFiyat)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmetSuresi)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var hizmet in Model)
+        {
+            <tr>
+                <td>@hizmet.hizmetAdi</td>
+                <td>@hizmet.hizmetFiyat</td>
+                <td>@hizmet.hizmetSuresi</td>
+                <td>
+                    <form asp-action="HizmetDuzenle" method="post" style="display:inline;">
+                        <input type="hidden" name="hizmetID" asp-for="@hizmet.hizmetID" />
+                        <button type="submit" class="btn btn-primary">Duzenle</button>
+                    </form>
+                    <form asp-action="HizmetSil" method="post" style="display:inline;">
+                        <input type="hidden" name="hizmetID" asp-for="@hizmet.hizmetID" />
+                        <button type="submit" class="btn btn-danger">Duzenle</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
