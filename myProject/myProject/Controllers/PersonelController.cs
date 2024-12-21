@@ -51,15 +51,39 @@ namespace myProject.Controllers
         [HttpPost]
         public IActionResult PersonelDuzenle(int personelID)
         {
-            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
+            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
             if (personel == null) return NotFound();
             return View(personel);
         }
         [HttpPost]
-        public async Task<IActionResult> PersonelDuzenle(Personeller p,int personelID)
+        public async Task<IActionResult> PersonelDuzenleAcil(int personelID, string isim, string soyisim,string eposta,string telNo )
         {
-
-            return View();
+            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
+            
+            if (personel == null) return NotFound();
+            if(personel.eposta != eposta)
+            {
+                var personelKontrol = _context.Personeller.FirstOrDefault(k=>k.eposta == eposta);
+                if(personelKontrol != null)
+                {
+                    TempData["msj"] = "Bu eposta adresi zaten kullanılmaktadır. Lütfen başka bir eposta adresi seçiniz.";
+                    return RedirectToAction("PersonelDuzenle", personelID);
+                }
+                personel.eposta = eposta;
+            }
+            if (personel.telNo != telNo)
+            {
+                var personelKontrol = _context.Personeller.FirstOrDefault(k => k.telNo == telNo);
+                if(personelKontrol != null)
+                {
+                    TempData["msj"] = "Bu telefon numarası zaten kullanılmaktadır. Lütfen başka bir telefon numarası giriniz.";
+                    return RedirectToAction("PersonelDuzenle", personelID);
+                }
+                personel.telNo = telNo;
+            }
+            _context.SaveChangesAsync();
+            TempData["msj"] = "Değişiklikler başarıyla kaydedilmiştir.";
+            return RedirectToAction("PersonelGoruntule");
         }
         public IActionResult PersonelSil()
         {
