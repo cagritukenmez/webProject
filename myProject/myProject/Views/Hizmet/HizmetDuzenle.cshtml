@@ -1,0 +1,46 @@
+﻿@model myProject.Models.Hizmetler
+
+@{
+    ViewData["Title"] = "HizmetDuzenle";
+}
+
+<h1>HizmetDuzenle</h1>
+
+<h4>Hizmetler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="HizmetDuzenleAcil">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="hizmetID" />
+            <div class="form-group">
+                <label asp-for="hizmetAdi" class="control-label"></label>
+                <input asp-for="hizmetAdi" class="form-control" value="@Model.hizmetAdi"/>
+                <span asp-validation-for="hizmetAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="hizmetSuresi" class="control-label"></label>
+                <input asp-for="hizmetSuresi" class="form-control" value="@Model.hizmetSuresi"/>
+                <span asp-validation-for="hizmetSuresi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="hizmetFiyat" class="control-label"></label>
+                <input asp-for="hizmetFiyat" class="form-control" value="@Model.hizmetFiyat"/>
+                <span asp-validation-for="hizmetFiyat" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="PersonelID" />
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+        <form asp-controller="Hizmet" asp-action="HizmetGoruntule" method="post" style="display:inline;">
+            <input type="hidden" name="personelID" asp-for="@Model.PersonelID" />
+            <button type="submit" class="btn btn-secondary">Geri Dön</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

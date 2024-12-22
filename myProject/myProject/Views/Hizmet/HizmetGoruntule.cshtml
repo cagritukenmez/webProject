@@ -29,12 +29,13 @@
                     </form>
                     <form asp-action="HizmetSil" method="post" style="display:inline;">
                         <input type="hidden" name="hizmetID" asp-for="@hizmet.hizmetID" />
-                        <button type="submit" class="btn btn-danger">Duzenle</button>
+                        <button type="submit" class="btn btn-danger">Sil</button>
                     </form>
                 </td>
             </tr>
         }
     </tbody>
-
-
 </table>
+<div>
+    <a method="post" asp-controller="Personel" asp-action="PersonelGoruntule" class="btn btn-secondary">Geri Dön</a>
+</div>
