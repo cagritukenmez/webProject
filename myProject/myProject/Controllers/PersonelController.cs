@@ -85,9 +85,40 @@ namespace myProject.Controllers
             TempData["msj"] = "Değişiklikler başarıyla kaydedilmiştir.";
             return RedirectToAction("PersonelGoruntule");
         }
-        public IActionResult PersonelSil()
+        [HttpPost]
+        public IActionResult PersonelSil(int personelID)
         {
-            return View();
+            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
+            if (personel == null) return NotFound();
+            return View(personel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PersonelSilAcil(int personelID)
+        {
+            var personel = await _context.Personeller
+                .Include(p => p.Hizmetler) // Hizmetler ilişkisini dahil et
+                .Include(p => p.Randevular) // Eğer başka ilişkiler varsa ekleyin
+                .FirstOrDefaultAsync(p => p.personelID == personelID);
+            if (personel == null)
+            {
+                TempData["danger"] = "Silinmek istenen personel bulunamadı.";
+                return RedirectToAction("Index", "Personel");
+            }
+            //kontrol et ve sil
+            if (personel.Hizmetler != null && personel.Hizmetler.Any())
+            {
+                _context.Hizmetler.RemoveRange(personel.Hizmetler);
+            }
+            //kontrol et ve sil
+            if (personel.Randevular != null && personel.Randevular.Any())
+            {
+                _context.Randevular.RemoveRange(personel.Randevular);
+            }
+            _context.Personeller.Remove(personel);
+            // Değişiklikleri kaydet
+            await _context.SaveChangesAsync();
+            TempData["danger"] = personel.isim + " " + personel.soyisim + " adlı personel başarıyla silindi.";
+            return RedirectToAction("PersonelGoruntule");
         }
     }
 }
