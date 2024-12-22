@@ -1,0 +1,52 @@
+﻿@model List<myProject.Models.Personeller>
+
+@{
+    ViewData["Title"] = "Personel Görüntüle";
+}
+
+<h2>Personel Görüntüle</h2>
+<div class="alert-danger">@TempData["danger"]</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().isim)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().soyisim)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().eposta)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().telNo)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personel in Model)
+        {
+            <tr>
+                <td>@personel.isim</td>
+                <td>@personel.soyisim</td>
+                <td>@personel.eposta</td>
+                <td>@personel.telNo</td>
+                <td>
+                    <form asp-action="PersonelDuzenle" method="post" style="display:inline;">
+                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                        <button type="submit" class="btn btn-primary">Duzenle</button>
+                    </form>
+                    <form asp-action="PersonelSil" method="post" style="display:inline;">
+                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                    <form asp-controller="Hizmet" asp-action="HizmetGoruntule" method="post" style="display:inline;">
+                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                        <button type="submit" class="btn btn-primary">Hizmetler</button>
+                    </form>
+                    <form asp-controller="Hizmet" asp-action="HizmetEkle" method="post" style="display:inline;">
+                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                        <button type="submit" class="btn btn-light">HizmetEkle</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a method="post" asp-controller="BerberSalonu" asp-action="AdminPaneli" class="btn btn-secondary">Geri Dön</a>
+</div>
