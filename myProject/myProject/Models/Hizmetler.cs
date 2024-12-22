@@ -17,8 +17,8 @@ namespace myProject.Models
         [Required]
         [Display(Name = "Hizmetin Fiyatı")]
         public int hizmetFiyat { get; set; }
-        [Required]
-        [ForeignKey]
-        public int salonID { get; set; }
+        [ForeignKey("Personeller")]
+        public int PersonelID { get; set; }
+        public Personeller personel { get; set; }
     }
 }

@@ -17,6 +17,12 @@ namespace myProject.Models
         {
             optionsBuilder.UseSqlServer(@"Server =(localdb)\mssqllocaldb;
 Database=BerberSalonuDB;Trusted_Connection=True;");
+
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Hizmetler>().HasOne(h => h.personel).WithMany(p => p.Hizmetler).HasForeignKey(h => h.PersonelID);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
