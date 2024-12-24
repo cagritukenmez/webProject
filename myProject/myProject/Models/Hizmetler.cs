@@ -18,7 +18,11 @@ namespace myProject.Models
         [Display(Name = "Hizmetin Fiyatı")]
         public int hizmetFiyat { get; set; }
         [ForeignKey("Personeller")]
-        public int PersonelID { get; set; }
-        public Personeller personel { get; set; }
+        public int personelID { get; set; }
+        public virtual Personeller Personel { get; set; }
+        [ForeignKey("BerberSalonu")]
+        public int salonID { get; set; }
+        public virtual Berbersalonu Berbersalonu { get; set; }
+
     }
 }

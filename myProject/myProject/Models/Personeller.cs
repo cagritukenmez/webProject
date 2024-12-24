@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myProject.Models
 {
@@ -29,6 +30,8 @@ namespace myProject.Models
         [Display(Name = "Personel Hizmetleri")]
         public ICollection<Hizmetler> Hizmetler{ get; set; }
         public ICollection<Randevu> Randevular { get; set; }
-        public ICollection<UygunOlmayanTarihSaat> UygunOlmayanTarihSaatler{ get; set; }
+        [ForeignKey("BerberSalonu")]
+        public int salonID { get; set; }
+        public virtual Berbersalonu Berbersalonu { get; set; }
     }
 }

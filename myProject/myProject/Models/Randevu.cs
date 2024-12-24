@@ -15,13 +15,14 @@ namespace myProject.Models
         [Required]
         [Display(Name = "Randevu Saati")]
         public TimeSpan randevuSaati { get; set; }
-        [Required]
-        [Display(Name = "Personel Seçiniz.")]
-        public Personeller personel { get; set; }
-        [Required]
-        [Display(Name = "Hizmet Seçiniz.")]
-        public Hizmetler hizmet { get; set; }
-        [ForeignKey]
-        public int musteriId { get; set; }
+        [ForeignKey("Kullanıcı")]
+        public int kullaniciID { get; set; }
+        public virtual Kullanıcı kullanici { get; set; }
+        [ForeignKey("Personeller")]
+        public int personelID { get; set; }
+        public virtual Personeller personel { get; set; }
+        [ForeignKey("BerberSalonu")]
+        public int salonID { get; set; }
+        public virtual Berbersalonu Berbersalonu { get; set; }
     }
 }

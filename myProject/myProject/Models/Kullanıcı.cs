@@ -6,11 +6,11 @@ namespace myProject.Models
         [Key]
         public int kullaniciID { get; set; }
         [Required]
-        [StringLength(15,MinimumLength =3,ErrorMessage ="Şifre en az 3 karakter uzunluğunda olmalıdır.")]
+        [StringLength(15,MinimumLength =3,ErrorMessage ="Kullanıcı adı en az 3 karakter uzunluğunda olmalıdır.")]
         [Display(Name ="Kullanıcı Adı :")]
         public string kullaniciAdi { get; set; }
         [Required]
-        [StringLength(15,MinimumLength =8,ErrorMessage = "Şifre en az 8 karakter uzunluğunda olmalıdır.")]
+        [StringLength(15,MinimumLength =3,ErrorMessage = "Şifre en az 3 karakter uzunluğunda olmalıdır.")]
         [Display(Name ="Şifre :")]
         public string kullaniciSifre { get; set; }
         [Required]
@@ -24,5 +24,6 @@ namespace myProject.Models
         [RegularExpression(@"^\d+$", ErrorMessage = "Telefon numarası sadece rakamlardan oluşmalıdır.")]
         public string telNo { get; set; }
         public string rol { get; set; }
+        public ICollection<Randevu> Randevular{ get; set; }
     }
 }
