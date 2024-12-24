@@ -1,54 +1,40 @@
-﻿@model myProject.Models.Berbersalonu
+﻿@model List<myProject.Models.Berbersalonu>
 
 @{
-    ViewData["Title"] = "AdminPaneli";
+    ViewData["Title"] = "Berber Salonları";
 }
 
-<h1>AdminPaneli</h1>
-<div style="position: absolute; top: 10px; right: 10px;">
-    <a asp-controller="Kullanıcı" asp-action="CikisYap" class="btn btn-danger">Çıkış Yap</a>
-</div>
-<div>
-    <h4>Berbersalonu</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.salonAd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.salonAd)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.salonAdres)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.salonAdres)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.salonNumara)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.salonNumara)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.salonEposta)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.salonEposta)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.baslangicSaati)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.baslangicSaati)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bitisSaati)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bitisSaati)
-        </dd>
-    </dl>
-    <a asp-controller="Personel" asp-action="PersonelOlustur" class="btn btn-success">Personel Oluştur</a>
-    <a asp-controller="Personel" asp-action="PersonelGoruntule" class="btn btn-primary">Personel Goruntule</a>
-</div>
+<h1>Berber Salonları</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Salon Adı</th>
+            <th>Adres</th>
+            <th>Telefon Numarası</th>
+            <th>E-posta</th>
+            <th>Başlangıç Saati</th>
+            <th>Bitiş Saati</th>
+            <th>Aksiyonlar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var salon in Model)
+        {
+            <tr>
+                <td>@salon.salonAd</td>
+                <td>@salon.salonAdres</td>
+                <td>@salon.salonNumara</td>
+                <td>@salon.salonEposta</td>
+                <td>@salon.baslangicSaati</td>
+                <td>@salon.bitisSaati</td>
+                <td>
+                    <form asp-controller="Personel" asp-action="PersonelGoruntule" method="get" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@salon.salonID" />
+                        <button type="submit" class="btn btn-primary">Personel Goruntule</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

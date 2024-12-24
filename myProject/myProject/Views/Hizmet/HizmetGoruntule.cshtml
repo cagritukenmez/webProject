@@ -23,11 +23,11 @@
                 <td>@hizmet.hizmetFiyat</td>
                 <td>@hizmet.hizmetSuresi</td>
                 <td>
-                    <form asp-action="HizmetDuzenle" method="post" style="display:inline;">
+                    <form asp-action="HizmetDuzenle" method="get" style="display:inline;">
                         <input type="hidden" name="hizmetID" asp-for="@hizmet.hizmetID" />
                         <button type="submit" class="btn btn-primary">Duzenle</button>
                     </form>
-                    <form asp-action="HizmetSil" method="post" style="display:inline;">
+                    <form asp-action="HizmetSil" method="get" style="display:inline;">
                         <input type="hidden" name="hizmetID" asp-for="@hizmet.hizmetID" />
                         <button type="submit" class="btn btn-danger">Sil</button>
                     </form>
@@ -36,6 +36,9 @@
         }
     </tbody>
 </table>
-<div>
-    <a method="post" asp-controller="Personel" asp-action="PersonelGoruntule" class="btn btn-secondary">Geri Dön</a>
-</div>
+
+<form asp-controller="Hizmet" asp-action="HizmetEkle" method="get" style="display:inline;">
+    <input type="hidden" name="personelID" value="@Model[0].personelID" />
+    <button type="submit" class="btn btn-primary">HizmetEkle</button>
+</form>
+<a method="get" asp-controller="Personel" asp-action="PersonelGoruntule" asp-route-salonID="@Model[0].salonID" class="btn btn-secondary">Geri Dön</a>

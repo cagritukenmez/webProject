@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using myProject.Models;
 
 namespace myProject.Controllers
@@ -29,14 +30,35 @@ namespace myProject.Controllers
                     }
                 }
 
-
             }
             return View();
         }
+        [HttpGet]
         public IActionResult AdminPaneli()
         {
-            //ekleme düzenleme.
+            var berberSalonlari = _context.BerberSalonları.ToList(); // Veritabanından salonları çekiyoruz
+            if(berberSalonlari.Any()){
+                return View(berberSalonlari);
+            }
+            TempData["msj"] = "Lütfen salon ekleyerek başlayınız.";
+            return RedirectToAction("BerberSalonuEkle");
+        }
+        [HttpGet]
+        public IActionResult BerberSalonuEkle()
+        {
+
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> BerberSalonuEkleAcil(string salonAd,string salonAdres,string salonNumara,string salonEposta,TimeOnly baslangicSaati,TimeOnly bitisSaati)
+        {
+            var Berbersalonu = new Berbersalonu { salonAd = salonAd, salonAdres = salonAdres, 
+                salonNumara = salonNumara, salonEposta = salonEposta, 
+                baslangicSaati = baslangicSaati, bitisSaati = bitisSaati };
+            _context.BerberSalonları.Add(Berbersalonu);
+            await _context.SaveChangesAsync();
+            TempData["msj"] = "Yeni bir berber salonu başarıyla oluşturulmuştur.";
+            return RedirectToAction("AdminPaneli");
         }
     }
 }

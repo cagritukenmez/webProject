@@ -1,15 +1,12 @@
 ﻿@model myProject.Models.Hizmetler
 
-@{
-    ViewData["Title"] = "HizmetEkle";
-}
 
 <h2>@TempData["msj"] İçin Hizmet Ekle</h2>
 <div class="alert-danger">@TempData["danger"]</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="HizmetEkleAcil">
+        <form asp-action="HizmetEkle">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="hizmetAdi" class="control-label"></label>
@@ -26,12 +23,12 @@
                 <input asp-for="hizmetFiyat" class="form-control" />
                 <span asp-validation-for="hizmetFiyat" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="hidden" asp-for="PersonelID" value="@ViewBag.personelID"class="form-control" style="display:inline;"/>
+            <div>
+                <input type="hidden" asp-for="personelID" value="@ViewBag.personelID"/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-controller="Personel" asp-action="PersonelGoruntule" class="btn btn-secondary">Geri Dön</a>
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+                <a asp-controller="Personel" asp-action="PersonelGoruntule" asp-route-personelID="@ViewBag.personelID"  class="btn btn-secondary">Geri Dön</a>
             </div>
 
         </form>

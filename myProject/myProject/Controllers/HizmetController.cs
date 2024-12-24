@@ -15,16 +15,21 @@ namespace myProject.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult HizmetGoruntule(int personelID)
         {
-            var personel= _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
-            if (personel == null) return NotFound();
+            var personel= _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
+            if (personel == null) return RedirectToAction("AdminPaneli","BerberSalonu");
             TempData["msj"] = personel.isim + " " +personel.soyisim;
-            var hizmetler = _context.Hizmetler.Include(h => h.personel).Where(h=>h.PersonelID == personelID).ToList();
-            return View(hizmetler);
+            var hizmetler = _context.Hizmetler.Where(h=>h.personelID == personelID).ToList();
+            if (hizmetler.Any())
+            {
+                return View(hizmetler);
+            }
+            TempData["danger"] = "Herhangi bir hizmet bulunamadı, hizmet ekleyiniz.";
+            return RedirectToAction("HizmetEkle", new { personelID = personelID });
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult HizmetDuzenle(int hizmetID)
         {
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
@@ -32,19 +37,18 @@ namespace myProject.Controllers
             return View(hizmet);
         }
         [HttpPost]
-        public async Task<IActionResult> HizmetDuzenleAcil(int hizmetID, string hizmetAdi, TimeOnly hizmetSuresi, int hizmetFiyat, int PersonelID)
+        public async Task<IActionResult> HizmetDuzenle(int hizmetID, string hizmetAdi, TimeOnly hizmetSuresi, int hizmetFiyat)
         {
             var hizmet = _context.Hizmetler.FirstOrDefault(h => h.hizmetID == hizmetID);
-
             if (hizmet == null)
             {
                 TempData["danger"] = "Güncellenmek istenen hizmet bulunamadı.";
-                return RedirectToAction("HizmetGoruntule",PersonelID);
+                return RedirectToAction("HizmetGoruntule", hizmet.personelID);
             }
 
             if (hizmet.hizmetAdi != hizmetAdi)
             {
-                var hizmetKontrol = _context.Hizmetler.FirstOrDefault(h => h.hizmetAdi == hizmetAdi && h.PersonelID == PersonelID);
+                var hizmetKontrol = _context.Hizmetler.FirstOrDefault(h => h.hizmetAdi == hizmetAdi);
                 if (hizmetKontrol != null)
                 {
                     TempData["danger"] = "Bu isimde bir hizmet zaten bulunmaktadır. Lütfen başka bir isim seçiniz.";
@@ -64,19 +68,19 @@ namespace myProject.Controllers
             }
             await _context.SaveChangesAsync();
             TempData["danger"] = "Hizmet başarıyla güncellenmiştir.";
-            return RedirectToAction("HizmetGoruntule",PersonelID);
+            return RedirectToAction("HizmetGoruntule", new { personelID=hizmet.personelID});
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult HizmetEkle(int personelID)
         {
-            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
+            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return NotFound();
             TempData["msj"] = personel.isim + " " + personel.soyisim;
             ViewBag.personelID = personelID;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> HizmetEkleAcil(string hizmetAdi,TimeOnly hizmetSuresi,int hizmetFiyat,int personelID)
+        public async Task<IActionResult> HizmetEkle(string hizmetAdi, TimeOnly hizmetSuresi, int hizmetFiyat, int personelID)
         {
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetAdi == hizmetAdi);
             if (hizmet != null)
@@ -85,18 +89,34 @@ namespace myProject.Controllers
                 ViewBag.personelID = personelID;
                 return View("HizmetEkle");
             }
-            var personel = await _context.Personeller.FindAsync(personelID);
+            var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null)
             {
                 TempData["danger"] = "Belirtilen personel bulunamadı!";
                 return View("HizmetEkle");
             }
 
-            hizmet = new Hizmetler { hizmetAdi = hizmetAdi, hizmetSuresi = hizmetSuresi, hizmetFiyat = hizmetFiyat, PersonelID = personelID ,personel = personel};
+            hizmet = new Hizmetler { hizmetAdi = hizmetAdi, hizmetSuresi = hizmetSuresi, hizmetFiyat = hizmetFiyat, personelID = personelID, salonID = personel.salonID };
             _context.Hizmetler.Add(hizmet);
             await _context.SaveChangesAsync();
             TempData["danger"] = "Başarılı bir şekilde hizmet eklenmiştir.";
-            return RedirectToAction("PersonelGoruntule","Personel", personelID);
+            return RedirectToAction("HizmetGoruntule", "Hizmet", new { personelID = personelID });
+        }
+        [HttpGet]
+        public IActionResult HizmetSil(int hizmetID)
+        {
+            var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
+            return View(hizmet);
+        }
+        [HttpPost]
+        public async Task<IActionResult> HizmetSil(int hizmetID,int evet)
+        {
+            var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
+            _context.Hizmetler.Remove(hizmet);
+            // Değişiklikleri kaydet
+            await _context.SaveChangesAsync();
+            TempData["danger"] = "Hizmet başarıyla silindi.";
+            return RedirectToAction("HizmetGoruntule", new { personelID= hizmet.personelID});
         }
     }
 }

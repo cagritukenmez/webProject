@@ -25,21 +25,18 @@
                 <td>@personel.eposta</td>
                 <td>@personel.telNo</td>
                 <td>
-                    <form asp-action="PersonelDuzenle" method="post" style="display:inline;">
-                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+
+                    <form asp-action="PersonelDuzenle" method="get" style="display:inline;">
+                        <input type="hidden" name="personelID" value="@personel.personelID" />
                         <button type="submit" class="btn btn-primary">Duzenle</button>
                     </form>
-                    <form asp-action="PersonelSil" method="post" style="display:inline;">
-                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                    <form asp-action="PersonelSil" method="get" style="display:inline;">
+                        <input type="hidden" name="personelID" value="@personel.personelID" />
                         <button type="submit" class="btn btn-danger">Sil</button>
                     </form>
-                    <form asp-controller="Hizmet" asp-action="HizmetGoruntule" method="post" style="display:inline;">
-                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
+                    <form asp-controller="Hizmet" asp-action="HizmetGoruntule" method="get" style="display:inline;">
+                        <input type="hidden" name="personelID" value="@personel.personelID" />
                         <button type="submit" class="btn btn-primary">Hizmetler</button>
-                    </form>
-                    <form asp-controller="Hizmet" asp-action="HizmetEkle" method="post" style="display:inline;">
-                        <input type="hidden" name="personelID" asp-for="@personel.personelID" />
-                        <button type="submit" class="btn btn-light">HizmetEkle</button>
                     </form>
                 </td>
             </tr>
@@ -48,5 +45,9 @@
 </table>
 
 <div>
-    <a method="post" asp-controller="BerberSalonu" asp-action="AdminPaneli" class="btn btn-secondary">Geri Dön</a>
+    <form asp-action="PersonelOlustur" method="get" style="display:inline;">
+        <input type="hidden" name="salonID" value="@ViewBag.salonID" />
+        <button type="submit" class="btn btn-primary">Personel Ekle</button>
+    </form>
+    <a method="get" asp-controller="BerberSalonu" asp-action="AdminPaneli" class="btn btn-secondary">Geri Dön</a>
 </div>

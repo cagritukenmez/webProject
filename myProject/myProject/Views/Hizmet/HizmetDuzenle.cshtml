@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="HizmetDuzenleAcil">
+        <form method="post" asp-action="HizmetDuzenle">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="hizmetID" />
             <div class="form-group">
@@ -28,14 +28,10 @@
                 <input asp-for="hizmetFiyat" class="form-control" value="@Model.hizmetFiyat"/>
                 <span asp-validation-for="hizmetFiyat" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="PersonelID" />
             <div class="form-group">
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <a method="get" asp-action="HizmetGoruntule" asp-route-personelID="@Model.personelID" class="btn btn-secondary">Geri Dön</a>
             </div>
-        </form>
-        <form asp-controller="Hizmet" asp-action="HizmetGoruntule" method="post" style="display:inline;">
-            <input type="hidden" name="personelID" asp-for="@Model.PersonelID" />
-            <button type="submit" class="btn btn-secondary">Geri Dön</button>
         </form>
     </div>
 </div>

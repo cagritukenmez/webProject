@@ -16,12 +16,13 @@ namespace myProject.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult PersonelOlustur()
-        { 
+        public IActionResult PersonelOlustur(int salonID)
+        {
+            ViewBag.salonID = salonID;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PersonelOlustur(string isim,string soyisim,string eposta,string telNo)
+        public async Task<IActionResult> PersonelOlustur(int salonID,string isim,string soyisim,string eposta,string telNo)
         {
             var personel = _context.Personeller.FirstOrDefault(k => k.eposta == eposta);
             if (personel != null)
@@ -35,7 +36,7 @@ namespace myProject.Controllers
                 TempData["msj"] = "Bu telefon numarası zaten kullanılıyor.";
                 return RedirectToAction("PersonelOlustur");
             }
-            personel = new Personeller { isim = isim, soyisim= soyisim, eposta = eposta, telNo = telNo};
+            personel = new Personeller { isim = isim, soyisim= soyisim, eposta = eposta, telNo = telNo,salonID = salonID};
             _context.Personeller.Add(personel);
 
             await _context.SaveChangesAsync();
@@ -43,12 +44,18 @@ namespace myProject.Controllers
             return RedirectToAction("AdminPaneli","BerberSalonu");
         }
         [HttpGet]
-        public IActionResult PersonelGoruntule()
+        public IActionResult PersonelGoruntule(int salonID)
         {
-            var personelListesi = _context.Personeller.ToList();
-            return View(personelListesi);
+            var personelListesi = _context.Personeller.Where(p => p.salonID == salonID).ToList();
+            ViewBag.salonID = salonID;
+            if (personelListesi.Any())
+            {
+                return View(personelListesi);
+            }
+            TempData["danger"] = "Herhangi bir personel bulunamadı, lütfen personel ekleyiniz.";
+            return RedirectToAction("PersonelOlustur", new { salonID = salonID });
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult PersonelDuzenle(int personelID)
         {
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
@@ -56,7 +63,7 @@ namespace myProject.Controllers
             return View(personel);
         }
         [HttpPost]
-        public async Task<IActionResult> PersonelDuzenleAcil(int personelID, string isim, string soyisim,string eposta,string telNo )
+        public async Task<IActionResult> PersonelDuzenle(int personelID, string isim, string soyisim,string eposta,string telNo)
         {
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             
@@ -66,8 +73,8 @@ namespace myProject.Controllers
                 var personelKontrol = _context.Personeller.FirstOrDefault(k=>k.eposta == eposta);
                 if(personelKontrol != null)
                 {
-                    TempData["msj"] = "Bu eposta adresi zaten kullanılmaktadır. Lütfen başka bir eposta adresi seçiniz.";
-                    return RedirectToAction("PersonelDuzenle", personelID);
+                    TempData["danger"] = "Bu eposta adresi zaten kullanılmaktadır. Lütfen başka bir eposta adresi seçiniz.";
+                    return RedirectToAction("PersonelDuzenle", new { salonID = personel.salonID});
                 }
                 personel.eposta = eposta;
             }
@@ -76,16 +83,16 @@ namespace myProject.Controllers
                 var personelKontrol = _context.Personeller.FirstOrDefault(k => k.telNo == telNo);
                 if(personelKontrol != null)
                 {
-                    TempData["msj"] = "Bu telefon numarası zaten kullanılmaktadır. Lütfen başka bir telefon numarası giriniz.";
-                    return RedirectToAction("PersonelDuzenle", personelID);
+                    TempData["danger"] = "Bu telefon numarası zaten kullanılmaktadır. Lütfen başka bir telefon numarası giriniz.";
+                    return RedirectToAction("PersonelDuzenle", new { salonID = personel.salonID });
                 }
                 personel.telNo = telNo;
             }
             _context.SaveChangesAsync();
-            TempData["msj"] = "Değişiklikler başarıyla kaydedilmiştir.";
-            return RedirectToAction("PersonelGoruntule");
+            TempData["danger"] = "Değişiklikler başarıyla kaydedilmiştir.";
+            return RedirectToAction("PersonelGoruntule", new { salonID = personel.salonID });
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult PersonelSil(int personelID)
         {
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
@@ -93,7 +100,7 @@ namespace myProject.Controllers
             return View(personel);
         }
         [HttpPost]
-        public async Task<IActionResult> PersonelSilAcil(int personelID)
+        public async Task<IActionResult> PersonelSil(int personelID,int evet)
         {
             var personel = await _context.Personeller
                 .Include(p => p.Hizmetler) // Hizmetler ilişkisini dahil et
@@ -118,7 +125,7 @@ namespace myProject.Controllers
             // Değişiklikleri kaydet
             await _context.SaveChangesAsync();
             TempData["danger"] = personel.isim + " " + personel.soyisim + " adlı personel başarıyla silindi.";
-            return RedirectToAction("PersonelGoruntule");
+            return RedirectToAction("PersonelGoruntule", new { salonID = personel.salonID });
         }
     }
 }

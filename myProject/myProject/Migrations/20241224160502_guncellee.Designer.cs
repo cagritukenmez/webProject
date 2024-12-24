@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myProject.Models;
 
@@ -11,9 +12,11 @@ using myProject.Models;
 namespace myProject.Migrations
 {
     [DbContext(typeof(myyDbContext))]
-    partial class myyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241224160502_guncellee")]
+    partial class guncellee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,8 +55,7 @@ namespace myProject.Migrations
 
                     b.Property<string>("salonNumara")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("salonID");
 
