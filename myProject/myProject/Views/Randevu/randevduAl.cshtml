@@ -5,38 +5,33 @@
 }
 
 
-
-<h4>Randevu Al</h4>
+<h2>Randevu Al</h2>
 <hr />
-<div style="position: absolute; top: 10px; right: 10px;">
-    <a asp-controller="Kullanıcı" asp-action="CikisYap" class="btn btn-danger">Çıkış Yap</a>
-</div>
-
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="randevduAl">
+        <form asp-action="randevduAl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="randevuTarihi" class="control-label"></label>
-                <select id="RandevuSaati" name="RandevuSaati" class="form-control">
-                    @for (int i = 9; i <= 18; i++)
-                    {
-                        @for (int j =0; j<60 ; j += 20)
-                        {
-                            var saat = new TimeSpan(i, j, 0);
-                            var saatString = saat.ToString(@"hh\:mm");
-                            //var disabled = ViewBag.DoluSaatler.Contains(saat) ? "disabled" : "";
-                            <option value="@saat">@saatString</option>
-                        }
-                        
-                    }
-                </select>
-                <span asp-validation-for="randevuTarihi" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="randevuTarihi" class="control-label"></label>
                 <input asp-for="randevuTarihi" class="form-control" />
                 <span asp-validation-for="randevuTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="randevuSaati" class="control-label"></label>
+                <input asp-for="randevuSaati" class="form-control" />
+                <span asp-validation-for="randevuSaati" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="kullaniciID" class="control-label"></label>
+                <select asp-for="kullaniciID" class ="form-control" asp-items="ViewBag.kullaniciID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="personelID" class="control-label"></label>
+                <select asp-for="personelID" class ="form-control" asp-items="ViewBag.personelID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="salonID" class="control-label"></label>
+                <select asp-for="salonID" class ="form-control" asp-items="ViewBag.salonID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -45,6 +40,9 @@
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

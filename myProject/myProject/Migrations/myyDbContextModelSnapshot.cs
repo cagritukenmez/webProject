@@ -175,6 +175,9 @@ namespace myProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("randevuID"));
 
+                    b.Property<int>("hizmetID")
+                        .HasColumnType("int");
+
                     b.Property<int>("kullaniciID")
                         .HasColumnType("int");
 
@@ -191,6 +194,8 @@ namespace myProject.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("randevuID");
+
+                    b.HasIndex("hizmetID");
 
                     b.HasIndex("kullaniciID");
 
@@ -257,6 +262,12 @@ namespace myProject.Migrations
 
             modelBuilder.Entity("myProject.Models.Randevu", b =>
                 {
+                    b.HasOne("myProject.Models.Hizmetler", "hizmet")
+                        .WithMany()
+                        .HasForeignKey("hizmetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("myProject.Models.Kullanıcı", "kullanici")
                         .WithMany("Randevular")
                         .HasForeignKey("kullaniciID")
@@ -276,6 +287,8 @@ namespace myProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Berbersalonu");
+
+                    b.Navigation("hizmet");
 
                     b.Navigation("kullanici");
 

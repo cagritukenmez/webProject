@@ -24,5 +24,8 @@ namespace myProject.Models
         [ForeignKey("BerberSalonu")]
         public int salonID { get; set; }
         public virtual Berbersalonu Berbersalonu { get; set; }
+        [ForeignKey("Hizmetler")]
+        public int hizmetID { get; set; }
+        public virtual Hizmetler hizmet { get; set; }
     }
 }
