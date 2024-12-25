@@ -14,7 +14,12 @@
                 }
                 else
                 {
-                    <a asp-controller="Randevu" asp-action="randevduAl" class="btn btn-success">Randevu Al</a>
+                    @if(ViewBag.Role == "Admin"){
+                        <a asp-action="AdminPaneli" class="btn btn-dark" >Admin Paneli</a>
+                    }
+                    else {
+                        <a asp-controller="Randevu" asp-action="randevduAl" class="btn btn-success">Randevu Al</a>
+                    }
                     <a asp-controller="Kullanıcı" asp-action="CikisYap" class="btn btn-danger" >Çıkış Yap</a>
                 }
             </div>

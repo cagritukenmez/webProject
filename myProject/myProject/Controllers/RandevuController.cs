@@ -1,17 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using myProject.Models;
 
 namespace myProject.Controllers
 {
     public class RandevuController : Controller
     {
-        public IActionResult Index()
+        private readonly myyDbContext _context;
+        public RandevuController(myyDbContext context)
         {
-            return View();
+            _context = context;
         }
+        [HttpGet]
         public IActionResult randevduAl()
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie != null)
+            {
+                int kullaniciID = int.Parse(kullaniciIDCookie);
+                var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+                if (kullanici != null)
+                {
+                    return View(kullanici);
+                }
 
-            return View();
+            }
+            return RedirectToAction("Index");
         }
+
     }
 }

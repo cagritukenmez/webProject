@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\grfsp\\source\\repos\\myProject\\myProject\\myProject.csproj": {}
+    "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\myProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\grfsp\\source\\repos\\myProject\\myProject\\myProject.csproj": {
+    "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\myProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\grfsp\\source\\repos\\myProject\\myProject\\myProject.csproj",
+        "projectUniqueName": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\myProject.csproj",
         "projectName": "myProject",
-        "projectPath": "C:\\Users\\grfsp\\source\\repos\\myProject\\myProject\\myProject.csproj",
+        "projectPath": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\myProject.csproj",
         "packagesPath": "C:\\Users\\grfsp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\grfsp\\source\\repos\\myProject\\myProject\\obj\\",
+        "outputPath": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\grfsp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

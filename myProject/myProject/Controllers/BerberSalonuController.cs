@@ -26,7 +26,6 @@ namespace myProject.Controllers
                     if(kullanici.rol == "Admin")
                     {
                         ViewBag.Role = "Admin";
-                        return RedirectToAction("AdminPaneli", "BerberSalonu");
                     }
                 }
 
@@ -36,12 +35,29 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult AdminPaneli()
         {
-            var berberSalonlari = _context.BerberSalonları.ToList(); // Veritabanından salonları çekiyoruz
-            if(berberSalonlari.Any()){
-                return View(berberSalonlari);
+            ViewBag.IsLoggedIn = false;
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie != null)
+            {
+                int kullaniciID = int.Parse(kullaniciIDCookie);
+                var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+                if (kullanici != null)
+                {
+                    ViewBag.IsLoggedIn = true;
+                    if (kullanici.rol == "Admin")
+                    {
+                        ViewBag.Role = "Admin";
+                        var berberSalonlari = _context.BerberSalonları.ToList(); // Veritabanından salonları çekiyoruz
+                        if (berberSalonlari.Any())
+                        {
+                            return View(berberSalonlari);
+                        }
+                        TempData["msj"] = "Lütfen salon ekleyerek başlayınız.";
+                        return RedirectToAction("BerberSalonuEkle");
+                    }
+                }
             }
-            TempData["msj"] = "Lütfen salon ekleyerek başlayınız.";
-            return RedirectToAction("BerberSalonuEkle");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult BerberSalonuEkle()

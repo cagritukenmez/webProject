@@ -11,10 +11,6 @@ namespace myProject.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
         public IActionResult HizmetGoruntule(int personelID)
         {

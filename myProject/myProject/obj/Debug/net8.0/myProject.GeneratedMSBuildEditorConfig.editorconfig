@@ -1,47 +1,111 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = myProject
 build_property.RootNamespace = myProject
-build_property.ProjectDir = C:\Users\grfsp\source\repos\myProject\myProject\
+build_property.ProjectDir = C:\Users\grfsp\OneDrive\Belgeler\GitHub\webProject\myProject\myProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\grfsp\source\repos\myProject\myProject
+build_property.MSBuildProjectDirectory = C:\Users\grfsp\OneDrive\Belgeler\GitHub\webProject\myProject\myProject
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/Home/Index.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/BerberSalonu/AdminPaneli.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVyYmVyU2Fsb251XEFkbWluUGFuZWxpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/BerberSalonu/BerberSalonuEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVyYmVyU2Fsb251XEJlcmJlclNhbG9udUVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/BerberSalonu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVyYmVyU2Fsb251XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Hizmet/HizmetDuzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGl6bWV0XEhpem1ldER1emVubGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Hizmet/HizmetEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGl6bWV0XEhpem1ldEVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Hizmet/HizmetGoruntule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGl6bWV0XEhpem1ldEdvcnVudHVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Hizmet/HizmetSil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGl6bWV0XEhpem1ldFNpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/Home/Privacy.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/Shared/Error.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Kullanıcı/GirisYap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuxLFjxLFcR2lyaXNZYXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Kullanıcı/KayitOl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuxLFjxLFcS2F5aXRPbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Personel/PersonelDuzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxEdXplbmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Personel/PersonelGoruntule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxHb3J1bnR1bGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Personel/PersonelOlustur.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxPbHVzdHVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Personel/PersonelSil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxTaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Randevu/randevduAl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxyYW5kZXZkdUFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/_ViewImports.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/_ViewStart.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/source/repos/myProject/myProject/Views/Shared/_Layout.cshtml]
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-t89oq8k6hc
