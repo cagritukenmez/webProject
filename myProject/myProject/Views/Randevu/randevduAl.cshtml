@@ -1,49 +1,152 @@
 ﻿@model myProject.Models.Randevu
 
-@{
-    ViewData["Title"] = "randevduAl";
-}
-
 
 <h2>Randevu Al</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="randevduAl">
+        <form asp-action="RandevuAl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Salon Seçimi -->
             <div class="form-group">
-                <label asp-for="randevuTarihi" class="control-label"></label>
-                <input asp-for="randevuTarihi" class="form-control" />
+                <label asp-for="salonID" class="control-label">Berber Salonu</label>
+                <select asp-for="salonID" class="form-control" id="SalonSelect">
+                </select>
+                <span asp-validation-for="salonID" class="text-danger"></span>
+            </div>
+
+            <!-- Personel Seçimi -->
+            <div class="form-group">
+                <label asp-for="personelID" class="control-label">Personel</label>
+                <select asp-for="personelID" class="form-control" id="PersonelSelect">
+                </select>
+                <span asp-validation-for="personelID" class="text-danger"></span>
+            </div>
+
+            <!-- Hizmet Seçimi -->
+            <div class="form-group">
+                <label asp-for="hizmetID" class="control-label">Hizmet</label>
+                <select asp-for="hizmetID" class="form-control" id="HizmetSelect">
+                </select>
+                <span asp-validation-for="hizmetID" class="text-danger"></span>
+            </div>
+
+            <!-- Randevu Tarihi Seçimi -->
+            <div class="form-group">
+                <label asp-for="randevuTarihi" class="control-label">Randevu Tarihi</label>
+                <input asp-for="randevuTarihi" class="form-control" id="RandevuTarihi" />
                 <span asp-validation-for="randevuTarihi" class="text-danger"></span>
             </div>
+
+            <!-- Randevu Saati Seçimi -->
             <div class="form-group">
-                <label asp-for="randevuSaati" class="control-label"></label>
+                <label asp-for="randevuSaati" class="control-label">Randevu Saati</label>
                 <input asp-for="randevuSaati" class="form-control" />
                 <span asp-validation-for="randevuSaati" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="kullaniciID" class="control-label"></label>
-                <select asp-for="kullaniciID" class ="form-control" asp-items="ViewBag.kullaniciID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="personelID" class="control-label"></label>
-                <select asp-for="personelID" class ="form-control" asp-items="ViewBag.personelID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="salonID" class="control-label"></label>
-                <select asp-for="salonID" class ="form-control" asp-items="ViewBag.salonID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Randevu Al" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function loadPersoneller(salonID) {
+            if (salonID) {
+                $.post('@Url.Action("GetPersoneller", "Randevu")', { salonID: salonID }, function (data) {
+                    $('#PersonelSelect').empty();
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            $('#PersonelSelect').append(new Option(item.text, item.value));
+                        });
+                        // Eğer tek bir personel varsa otomatik seç
+                        if (data.length === 1) {
+                            $('#PersonelSelect').val(data[0].value).trigger('change');
+                        }
+                    } else {
+                        $('#PersonelSelect').append(new Option("No staff available", ""));
+                    }
+                });
+            } else {
+                $('#PersonelSelect').empty();
+                $('#PersonelSelect').append(new Option("Select a salon first", ""));
+            }
+        }
+
+        // Salon değiştiğinde personel seçeneklerini yükle
+        $('#SalonSelect').change(function () {
+            var salonID = $(this).val();
+            loadPersoneller(salonID);
+        });
+
+        // Personel değiştiğinde uygun hizmetleri yükle
+        $('#PersonelSelect').change(function () {
+            var personelID = $(this).val();
+
+            if (personelID) {
+                $.post('@Url.Action("GetHizmetler", "Randevu")', { personelID: personelID }, function (data) {
+                    $('#HizmetSelect').empty(); // Önce mevcut seçenekleri temizle
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            $('#HizmetSelect').append(new Option(item.text, item.value));
+                        });
+                        // Eğer tek bir hizmet varsa otomatik seç
+                        if (data.length === 1) {
+                            $('#HizmetSelect').val(data[0].value).trigger('change');
+                        }
+                    } else {
+                        $('#HizmetSelect').append(new Option("No services available", ""));
+                    }
+                }).fail(function () {
+                    alert("Hizmetler yüklenirken bir hata oluştu.");
+                });
+            } else {
+                $('#HizmetSelect').empty();
+                $('#HizmetSelect').append(new Option("Select a personnel first", ""));
+            }
+        });
+
+
+        // Personel değiştiğinde uygun tarihleri yükle
+        $('#PersonelSelect').change(function () {
+            var personelID = $(this).val();
+            var salonID = $('#SalonSelect').val();
+
+            if (salonID && personelID) {
+                $.post('@Url.Action("GetUygunTarihler", "Randevu")', { salonID: salonID, personelID: personelID }, function (dates) {
+                    $('#RandevuTarihi').datepicker("destroy");
+                    var availableDates = dates.map(d => new Date(d));
+                    $('#RandevuTarihi').datepicker({
+                        beforeShowDay: function (date) {
+                            return [availableDates.some(d => d.toDateString() === date.toDateString()), ''];
+                        }
+                    });
+                });
+            }
+        });
+
+        $(document).ready(function () {
+            // Sayfa yüklendiğinde salonları getir
+            $.post('@Url.Action("GetSalon", "Randevu")', function (data) {
+                $('#SalonSelect').empty();
+                if (data.length > 0) {
+                    $.each(data, function (i, item) {
+                        $('#SalonSelect').append(new Option(item.text, item.value));
+                    });
+                    // Eğer tek bir salon varsa otomatik seç
+                    if (data.length === 1) {
+                        $('#SalonSelect').val(data[0].value).trigger('change');
+                    }
+                } else {
+                    $('#SalonSelect').append(new Option("No salons available", ""));
+                }
+            });
+        });
+    </script>
 }

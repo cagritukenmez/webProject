@@ -86,8 +86,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxTaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Randevu/randevduAl.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxyYW5kZXZkdUFsLmNzaHRtbA==
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Randevu/RandevduAl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxSYW5kZXZkdUFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Randevu/RandevuGoruntule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFuZGV2dVxSYW5kZXZ1R29ydW50dWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Shared/Error.cshtml]

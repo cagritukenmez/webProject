@@ -66,7 +66,7 @@ namespace myProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> BerberSalonuEkleAcil(string salonAd,string salonAdres,string salonNumara,string salonEposta,TimeOnly baslangicSaati,TimeOnly bitisSaati)
+        public async Task<IActionResult> BerberSalonuEkle(string salonAd,string salonAdres,string salonNumara,string salonEposta,TimeOnly baslangicSaati,TimeOnly bitisSaati)
         {
             var Berbersalonu = new Berbersalonu { salonAd = salonAd, salonAdres = salonAdres, 
                 salonNumara = salonNumara, salonEposta = salonEposta, 

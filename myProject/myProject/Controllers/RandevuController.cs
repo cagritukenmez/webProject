@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using myProject.Models;
 
@@ -12,7 +13,7 @@ namespace myProject.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult randevduAl()
+        public IActionResult RandevduAl()
         {
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
             if (kullaniciIDCookie != null)
@@ -21,12 +22,139 @@ namespace myProject.Controllers
                 var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
                 if (kullanici != null)
                 {
-                    return View(kullanici);
+                    ViewBag.kullanici = kullanici;
+                    return View();
                 }
 
             }
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> RandevuAl(DateTime randevuTarihi, TimeSpan randevuSaati, int personelID, int salonID, int hizmetID)
+        {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati);
+            if (kontrol.Any())
+            {
+                return RedirectToAction("RandevuAl");
+            }
+            var randevum = new Randevu
+            {
+                randevuTarihi = randevuTarihi,
+                randevuSaati = randevuSaati,
+                kullaniciID = Convert.ToInt32(kullaniciIDCookie),
+                personelID = personelID,
+                salonID = salonID,
+                hizmetID = hizmetID
+            };
+            _context.Randevular.Add(randevum);
+            await _context.SaveChangesAsync();
 
+
+            return RedirectToAction("RandevuGoruntule");
+        }
+        public IActionResult RandevuGoruntule()
+        {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie != null)
+            {
+                int kullaniciID = int.Parse(kullaniciIDCookie);
+                var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+                if(kullanici != null)
+                {
+                    var randevular = _context.Randevular
+                        .Where(r => r.kullaniciID == kullaniciID)
+                        .Include(r => r.Berbersalonu)
+                        .Include(r => r.personel)
+                        .Include(r => r.hizmet)
+                        .ToList();
+                    if(kullanici.rol == "Admin")
+                    {
+                        randevular = _context.Randevular
+                            .Include(r => r.Berbersalonu)
+                            .Include(r => r.personel)
+                            .Include(r => r.hizmet)
+                            .ToList();
+                    }
+                    return View(randevular);
+                }
+            }
+            return View("RandevuAl");  
+        }
+
+        // AJAX: GetPersoneller
+        [HttpPost]
+        public IActionResult GetPersoneller(int salonID)
+        {
+            var personeller = _context.Personeller
+                .Where(p => p.salonID == salonID)
+                .Select(p => new SelectListItem
+                {
+                    Value = p.personelID.ToString(),
+                    Text = p.isim.ToUpper() + " " + p.soyisim.ToUpper()
+                })
+                .ToList();
+
+            return Json(personeller);
+        }
+
+        // AJAX: GetHizmetler
+        [HttpPost]
+        public IActionResult GetHizmetler(int personelID)
+        {
+            var hizmetler = _context.Hizmetler
+                .Where(h => h.personelID == personelID)
+                .Select(h => new SelectListItem
+                {
+                    Value = h.hizmetID.ToString(),
+                    Text = h.hizmetAdi.ToUpper() + " " + h.hizmetFiyat.ToString() + "TL"
+                })
+                .ToList();
+
+            return Json(hizmetler);
+        }
+
+        // AJAX: GetUygunTarihler
+        [HttpPost]
+        public IActionResult GetUygunTarihler(int salonID, int personelID)
+        {
+            // Tüm tarihler ve saatler için kontrol edilen liste
+            var mevcutRandevular = _context.Randevular
+                .Where(r => r.salonID == salonID && r.personelID == personelID)
+                .Select(r => new { r.randevuTarihi, r.randevuSaati })
+                .ToList();
+
+            var uygunTarihler = new List<DateTime>();
+            var baslangicTarihi = DateTime.Today;
+            var bitisTarihi = baslangicTarihi.AddMonths(1); // 1 ay sonrasına kadar göster
+
+            for (var tarih = baslangicTarihi; tarih <= bitisTarihi; tarih = tarih.AddDays(1))
+            {
+                // Her gün için kontrol et
+                if (mevcutRandevular.Any(r => r.randevuTarihi.Date == tarih.Date))
+                {
+                    continue; // Zaten doluysa ekleme
+                }
+
+                uygunTarihler.Add(tarih);
+            }
+
+            return Json(uygunTarihler.Select(t => t.ToString("yyyy-MM-dd"))); // Takvim için format
+        }
+        [HttpPost]
+        public IActionResult GetSalon()
+        {
+            var salonlar = _context.BerberSalonları
+                .Select(s => new SelectListItem
+                {
+                    Value = s.salonID.ToString(),
+                    Text = s.salonAd
+                })
+                .ToList();
+
+            return Json(salonlar);
+        }
     }
+
+
 }

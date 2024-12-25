@@ -68,7 +68,7 @@ namespace myProject.Controllers
                     return RedirectToAction("AdminPaneli", "BerberSalonu");
                 }
                 CookieOptions options2 = new CookieOptions();
-                options2.Expires = DateTime.Now.AddDays(3);
+                options2.Expires = DateTime.Now.AddHours(10);
                 HttpContext.Response.Cookies.Append("KullaniciID", kullanici.kullaniciID.ToString(), options2);
                 return RedirectToAction("Index", "BerberSalonu");
             }

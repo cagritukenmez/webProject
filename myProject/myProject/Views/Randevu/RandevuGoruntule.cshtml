@@ -1,0 +1,47 @@
+﻿@model List<myProject.Models.Randevu>
+
+<h2>Randevularım</h2>
+<div class="alert-danger">@TempData["danger"]</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().randevuTarihi)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().randevuSaati)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Berbersalonu.salonAd)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().personel.isim)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmet.hizmetAdi)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmet.hizmetSuresi)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().hizmet.hizmetFiyat)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model){
+            <tr>
+                <td>@randevu.randevuTarihi</td>
+                <td>@randevu.randevuTarihi</td>
+                <td>@randevu.Berbersalonu.salonAd</td>
+                <td>@randevu.personel.isim.ToUpper() @randevu.personel.soyisim.ToUpper()</td>
+                <td>@randevu.hizmet.hizmetAdi</td>
+                <td>@randevu.hizmet.hizmetSuresi</td>
+                <td>@randevu.hizmet.hizmetFiyat</td>
+                <td>
+                    @if (randevu.randevuTarihi > DateTime.Today){
+                        <form asp-action="RandevuSil" method="get" style="display:inline;">
+                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                        <form asp-action="RandevuDuzenle" method="get" style="display:inline;">
+                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
+                            <button type="submit" class="btn btn-dark">Duzenle</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a method="get" asp-controller="BerberSalonu" asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</div>
