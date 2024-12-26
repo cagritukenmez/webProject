@@ -62,7 +62,12 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult BerberSalonuEkle()
         {
-
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index");
+            if (kullanici.rol == "Member") return RedirectToAction("Index");
             return View();
         }
         [HttpPost]

@@ -37,11 +37,14 @@
         </dd>
     </dl>
     
-    <form asp-action="PersonelSil">
-        <input type="hidden" asp-for="personelID" />
-        <input type="submit" value="Eminim, sil!" class="btn btn-danger" />
-        <a asp-action="PersonelGoruntule" asp-route-salonID="@Model.salonID" class="btn btn-secondary">Geri Dön</a>
+    <form asp-action="PersonelSil" method="post" style="display:inline;">
+        <input type="hidden" name="personelID" value="@Model.personelID" />
+        <button type="submit" class="btn btn-danger">Eminim,sil!</button>
+    </form>
 
+    <form asp-action="PersonelGoruntule" method="get" style="display:inline;">
+        <input type="hidden" name="salonID" value="@Model.salonID" />
+        <button type="submit" class="btn btn-light">Geri Dön</button>
     </form>
 
 

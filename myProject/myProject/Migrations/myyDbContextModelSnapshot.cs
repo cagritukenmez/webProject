@@ -181,10 +181,13 @@ namespace myProject.Migrations
                     b.Property<int>("kullaniciID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("onaylimi")
+                        .HasColumnType("bit");
+
                     b.Property<int>("personelID")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("randevuSaati")
+                    b.Property<TimeOnly>("randevuSaati")
                         .HasColumnType("time");
 
                     b.Property<DateTime>("randevuTarihi")

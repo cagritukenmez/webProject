@@ -8,6 +8,7 @@ namespace myProject.Models
         [Key]
         public int tarihID { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public bool IsAvailable { get; set; }
         [ForeignKey("BerberSalonu")]

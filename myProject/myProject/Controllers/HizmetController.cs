@@ -14,6 +14,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult HizmetGoruntule(int personelID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var personel= _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return RedirectToAction("AdminPaneli","BerberSalonu");
             TempData["msj"] = personel.isim + " " +personel.soyisim;
@@ -28,6 +35,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult HizmetDuzenle(int hizmetID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
             if (hizmet == null) return NotFound();
             return View(hizmet);
@@ -69,6 +83,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult HizmetEkle(int personelID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return NotFound();
             TempData["msj"] = personel.isim + " " + personel.soyisim;
@@ -101,6 +122,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult HizmetSil(int hizmetID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
             return View(hizmet);
         }

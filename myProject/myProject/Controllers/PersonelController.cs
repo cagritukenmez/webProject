@@ -11,13 +11,16 @@ namespace myProject.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
         public IActionResult PersonelOlustur(int salonID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             ViewBag.salonID = salonID;
             return View();
         }
@@ -46,6 +49,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult PersonelGoruntule(int salonID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var personelListesi = _context.Personeller.Where(p => p.salonID == salonID).ToList();
             ViewBag.salonID = salonID;
             if (personelListesi.Any())
@@ -58,6 +68,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult PersonelDuzenle(int personelID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
             if (personel == null) return NotFound();
             return View(personel);
@@ -95,6 +112,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult PersonelSil(int personelID)
         {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return NotFound();
             return View(personel);

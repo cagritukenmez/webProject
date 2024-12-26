@@ -14,7 +14,8 @@ namespace myProject.Models
         [DataType(DataType.Time)]
         [Required]
         [Display(Name = "Randevu Saati")]
-        public TimeSpan randevuSaati { get; set; }
+        public TimeOnly randevuSaati { get; set; }
+        public bool onaylimi { get; set; }
         [ForeignKey("Kullanıcı")]
         public int kullaniciID { get; set; }
         public virtual Kullanıcı kullanici { get; set; }

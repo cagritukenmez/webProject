@@ -17,7 +17,8 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var randevu in Model){
+        @foreach (var randevu in Model)
+        {
             <tr>
                 <td>@randevu.randevuTarihi.ToString("dd-MM-yyyy")</td>
                 <td>@randevu.randevuSaati</td>
@@ -26,7 +27,7 @@
                 <td>@randevu.hizmet.hizmetAdi</td>
                 <td>@randevu.hizmet.hizmetSuresi</td>
                 <td>@randevu.hizmet.hizmetFiyat</td>
-                @if(randevu.onaylimi)
+                @if (randevu.onaylimi)
                 {
                     <td>Onaylandı</td>
                 }
@@ -34,18 +35,20 @@
                 {
                     <td>Onaylanmadı</td>
                 }
-                
                 <td>
-                    @if (randevu.randevuTarihi > DateTime.Now && ViewBag.rol == "Admin"){
-                        <form asp-action="RandevuSil" method="get" style="display:inline;">
-                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
-                            <button type="submit" class="btn btn-danger">Sil</button>
-                        </form>
-                        <form asp-action="RandevuDuzenle" method="get" style="display:inline;">
-                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
-                            <button type="submit" class="btn btn-dark">Duzenle</button>
-                        </form>
-                    }
+                    <form asp-action="RandevuSil" method="get" style="display:inline;">
+                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                    <form asp-action="RandevuDuzenle" method="get" style="display:inline;">
+                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
+                        <button type="submit" class="btn btn-dark">Duzenle</button>
+                    </form>
+
+                    <form asp-controller="Randevu" asp-action="RandevuOnay" method="post" style="display:inline;">
+                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
+                        <button type="submit" class="btn btn-light">Onay</button>
+                    </form>
                 </td>
             </tr>
         }
@@ -53,5 +56,5 @@
 </table>
 
 <div>
-    <a method="get" asp-controller="BerberSalonu" asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+    <a method="get" asp-controller="BerberSalonu" asp-action="AdminPaneli" class="btn btn-secondary">Geri Dön</a>
 </div>

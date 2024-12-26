@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\randevu\\randevdual.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\randevu\\randevdual.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\kullan\u0131c\u0131controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\kullan\u0131c\u0131controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\randevu\\randevugoruntule.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\randevu\\randevugoruntule.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\berbersalonu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\berbersalonu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\personelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\personelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,53 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RandevduAl.cshtml",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Randevu\\RandevduAl.cshtml",
-              "RelativeDocumentMoniker": "myProject\\Views\\Randevu\\RandevduAl.cshtml",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Randevu\\RandevduAl.cshtml",
-              "RelativeToolTip": "myProject\\Views\\Randevu\\RandevduAl.cshtml",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAADQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-25T19:14:54.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RandevuGoruntule.cshtml",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Randevu\\RandevuGoruntule.cshtml",
-              "RelativeDocumentMoniker": "myProject\\Views\\Randevu\\RandevuGoruntule.cshtml",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Randevu\\RandevuGoruntule.cshtml",
-              "RelativeToolTip": "myProject\\Views\\Randevu\\RandevuGoruntule.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-25T18:47:49.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\BerberSalonu\\Index.cshtml",
-              "RelativeDocumentMoniker": "myProject\\Views\\BerberSalonu\\Index.cshtml",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\BerberSalonu\\Index.cshtml",
-              "RelativeToolTip": "myProject\\Views\\BerberSalonu\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-25T18:39:29.217Z",
+              "Title": "HizmetController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\HizmetController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\HizmetController.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAIEAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T21:29:24.519Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RandevuController.cs",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
-              "RelativeDocumentMoniker": "myProject\\Controllers\\RandevuController.cs",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
-              "RelativeToolTip": "myProject\\Controllers\\RandevuController.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEsAAAAwAAAAAAAAAA==",
+              "Title": "Kullan\u0131c\u0131Controller.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "RelativeToolTip": "myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T18:31:56.514Z",
+              "WhenOpened": "2024-12-26T21:29:23.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PersonelController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\PersonelController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\PersonelController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\PersonelController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\PersonelController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAHcAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T21:29:22.514Z",
               "EditorCaption": ""
             }
           ]

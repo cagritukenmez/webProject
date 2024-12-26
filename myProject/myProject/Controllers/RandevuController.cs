@@ -30,10 +30,12 @@ namespace myProject.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public async Task<IActionResult> RandevuAl(DateTime randevuTarihi, TimeSpan randevuSaati, int personelID, int salonID, int hizmetID)
+        public async Task<IActionResult> RandevuAl(DateTime randevuTarihi, TimeOnly randevuSaati, int personelID, int salonID, int hizmetID)
         {
+            var tarihKontrol = _context.UygunTarih.FirstOrDefault(tk => tk.salonID == salonID && tk.Date.Date == randevuTarihi.Date);
+            if (tarihKontrol == null) RedirectToAction("UygunTarihGoruntule", "UygunTarih", new { salonID = salonID });
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
-            var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati);
+            var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati && tarihKontrol.IsAvailable == true);
             if (kontrol.Any())
             {
                 return RedirectToAction("RandevuAl");
@@ -45,7 +47,8 @@ namespace myProject.Controllers
                 kullaniciID = Convert.ToInt32(kullaniciIDCookie),
                 personelID = personelID,
                 salonID = salonID,
-                hizmetID = hizmetID
+                hizmetID = hizmetID,
+                onaylimi = false
             };
             _context.Randevular.Add(randevum);
             await _context.SaveChangesAsync();
@@ -53,6 +56,7 @@ namespace myProject.Controllers
 
             return RedirectToAction("RandevuGoruntule");
         }
+        [HttpGet]
         public IActionResult RandevuGoruntule()
         {
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
@@ -60,6 +64,7 @@ namespace myProject.Controllers
             {
                 int kullaniciID = int.Parse(kullaniciIDCookie);
                 var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+                ViewBag.rol = kullanici.rol;
                 if(kullanici != null)
                 {
                     var randevular = _context.Randevular
@@ -80,6 +85,41 @@ namespace myProject.Controllers
                 }
             }
             return View("RandevuAl");  
+        }
+        [HttpPost]
+        public IActionResult RandevuOnay(int randevuID)
+        {
+            var randevu = _context.Randevular.FirstOrDefault(r => r.randevuID == randevuID);
+            if(randevu != null)
+            {
+                randevu.onaylimi = true;
+                _context.Randevular.Update(randevu);
+                _context.SaveChanges();
+                return RedirectToAction("RandevuGoruntule2", new { salonID = randevu.salonID });
+            }
+            return RedirectToAction("AdminPaneli", "BerberSalonu");
+        }
+
+        [HttpGet]
+        public IActionResult RandevuGoruntule2(int salonID)
+        {
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            if (kullaniciIDCookie == null) return RedirectToAction("Index");
+            int kullaniciID = int.Parse(kullaniciIDCookie);
+            var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
+            if (kullanici == null) return RedirectToAction("Index");
+            if (kullanici.rol == "Member") return RedirectToAction("Index");
+
+            var randevular = _context.Randevular.Where(r => r.salonID == salonID)
+                .Include(r => r.personel)
+                .Include(r => r.Berbersalonu)
+                .Include(r => r.hizmet)
+                .ToList();
+            if (randevular.Any())
+            {
+                return View(randevular);
+            }
+            return View("AdminPaneli","BerberSalonu");
         }
 
         // AJAX: GetPersoneller

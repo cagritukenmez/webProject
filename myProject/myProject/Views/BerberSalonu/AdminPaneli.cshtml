@@ -33,6 +33,18 @@
                         <input type="hidden" name="salonID" value="@salon.salonID" />
                         <button type="submit" class="btn btn-primary">Personel Goruntule</button>
                     </form>
+                    <form asp-controller="UygunTarih" asp-action="UygunTarihAc" method="get" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@salon.salonID" />
+                        <button type="submit" class="btn btn-dark">Randevuya Aç</button>
+                    </form>
+                    <form asp-controller="UygunTarih" asp-action="UygunTarihGoruntule" method="get" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@salon.salonID" />
+                        <button type="submit" class="btn btn-dark">Uygun Günleri Goruntule</button>
+                    </form>
+                    <form asp-controller="Randevu" asp-action="RandevuGoruntule2" method="get" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@salon.salonID" />
+                        <button type="submit" class="btn btn-secondary">Randevu Goruntule</button>
+                    </form>
                 </td>
             </tr>
         }

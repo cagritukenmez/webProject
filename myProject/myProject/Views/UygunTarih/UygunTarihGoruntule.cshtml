@@ -1,0 +1,30 @@
+﻿@model List<myProject.Models.UygunTarih>
+
+<h2> @ViewBag.salonAd İçin Uygun Tarihler</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Randevuya Açık Mı?</th>
+            <th>Tarih</th>
+            <th>Aksiyonlar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uygunTarih in Model)
+        {
+            <tr>
+                <td>@uygunTarih.IsAvailable</td>
+                <td>@uygunTarih.Date.ToString("dd-MM-yyyy")</td>
+                <td>
+                    <form asp-controller="UygunTarih" asp-action="UygunTarihDegistir" method="post" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@uygunTarih.salonID" />
+                        <input type="hidden" name="Date" value="@uygunTarih.Date" />
+                        <button type="submit" class="btn btn-primary">Değiştir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
