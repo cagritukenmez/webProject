@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\uyguntarih\\uyguntarihgoruntule.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\uyguntarih\\uyguntarihgoruntule.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\uyguntarih\\uyguntarihrandevu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\uyguntarih\\uyguntarihrandevu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\uyguntarihcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\uyguntarihcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\berbersalonu\\adminpaneli.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\berbersalonu\\adminpaneli.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\randevucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\kullan\u0131c\u0131controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\kullan\u0131c\u0131controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\personelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\personelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +38,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UygunTarihController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\UygunTarihController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\UygunTarihController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\UygunTarihController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\UygunTarihController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T22:06:38.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RandevuController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\RandevuController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs*",
+              "RelativeToolTip": "myProject\\Controllers\\RandevuController.cs*",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAACQAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T22:05:04.451Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -40,62 +74,60 @@
               "RelativeDocumentMoniker": "myProject\\Views\\BerberSalonu\\AdminPaneli.cshtml",
               "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\BerberSalonu\\AdminPaneli.cshtml",
               "RelativeToolTip": "myProject\\Views\\BerberSalonu\\AdminPaneli.cshtml",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAAC0AAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-26T20:40:30.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UygunTarihController.cs",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\UygunTarihController.cs",
-              "RelativeDocumentMoniker": "myProject\\Controllers\\UygunTarihController.cs",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\UygunTarihController.cs",
-              "RelativeToolTip": "myProject\\Controllers\\UygunTarihController.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAIAwwFUAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T20:17:55.032Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UygunTarihGoruntule.cshtml",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\UygunTarih\\UygunTarihGoruntule.cshtml",
-              "RelativeDocumentMoniker": "myProject\\Views\\UygunTarih\\UygunTarihGoruntule.cshtml",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\UygunTarih\\UygunTarihGoruntule.cshtml*",
-              "RelativeToolTip": "myProject\\Views\\UygunTarih\\UygunTarihGoruntule.cshtml*",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-26T20:20:04.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UygunTarihRandevu.cshtml",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\UygunTarih\\UygunTarihRandevu.cshtml",
-              "RelativeDocumentMoniker": "myProject\\Views\\UygunTarih\\UygunTarihRandevu.cshtml",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\UygunTarih\\UygunTarihRandevu.cshtml",
-              "RelativeToolTip": "myProject\\Views\\UygunTarih\\UygunTarihRandevu.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-26T20:20:16.513Z",
+              "WhenOpened": "2024-12-26T22:04:49.993Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "RandevuController.cs",
-              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
-              "RelativeDocumentMoniker": "myProject\\Controllers\\RandevuController.cs",
-              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
-              "RelativeToolTip": "myProject\\Controllers\\RandevuController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACMAAAB3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T20:51:34.424Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "myProject\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "myProject\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-26T21:48:52.066Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HizmetController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\HizmetController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\HizmetController.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAHwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T21:29:24.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Kullan\u0131c\u0131Controller.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "RelativeToolTip": "myProject\\Controllers\\Kullan\u0131c\u0131Controller.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T21:29:23.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PersonelController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\PersonelController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\PersonelController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\PersonelController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\PersonelController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAHcAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T21:29:22.514Z"
             }
           ]
         }

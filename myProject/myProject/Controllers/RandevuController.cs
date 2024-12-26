@@ -34,6 +34,7 @@ namespace myProject.Controllers
         {
             var tarihKontrol = _context.UygunTarih.FirstOrDefault(tk => tk.salonID == salonID && tk.Date.Date == randevuTarihi.Date);
             if (tarihKontrol == null) RedirectToAction("UygunTarihGoruntule", "UygunTarih", new { salonID = salonID });
+            if(tarihKontrol.IsAvailable == false) return RedirectToAction("RandevuAl");
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
             var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati && tarihKontrol.IsAvailable == true);
             if (kontrol.Any())
@@ -104,11 +105,11 @@ namespace myProject.Controllers
         public IActionResult RandevuGoruntule2(int salonID)
         {
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
-            if (kullaniciIDCookie == null) return RedirectToAction("Index");
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
             int kullaniciID = int.Parse(kullaniciIDCookie);
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
-            if (kullanici == null) return RedirectToAction("Index");
-            if (kullanici.rol == "Member") return RedirectToAction("Index");
+            if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
+            if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
 
             var randevular = _context.Randevular.Where(r => r.salonID == salonID)
                 .Include(r => r.personel)
@@ -119,7 +120,7 @@ namespace myProject.Controllers
             {
                 return View(randevular);
             }
-            return View("AdminPaneli","BerberSalonu");
+            return RedirectToAction("AdminPaneli","BerberSalonu");
         }
 
         // AJAX: GetPersoneller
