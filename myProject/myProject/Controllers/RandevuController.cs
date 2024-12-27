@@ -27,14 +27,17 @@ namespace myProject.Controllers
                 }
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","BerberSalonu");
         }
         [HttpPost]
         public async Task<IActionResult> RandevuAl(DateTime randevuTarihi, TimeOnly randevuSaati, int personelID, int salonID, int hizmetID)
         {
             var tarihKontrol = _context.UygunTarih.FirstOrDefault(tk => tk.salonID == salonID && tk.Date.Date == randevuTarihi.Date);
-            if (tarihKontrol == null) RedirectToAction("UygunTarihGoruntule", "UygunTarih", new { salonID = salonID });
-            if(tarihKontrol.IsAvailable == false) return RedirectToAction("RandevuAl");
+            if (tarihKontrol == null) return RedirectToAction("Index","BerberSalonu");
+            if(tarihKontrol.IsAvailable == false) {
+                TempData["msj"] = "Bu Gün Kapalı!.";
+                return RedirectToAction("Index","BerberSalonu");
+            }
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
             var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati && tarihKontrol.IsAvailable == true);
             if (kontrol.Any())
@@ -182,6 +185,7 @@ namespace myProject.Controllers
 
             return Json(uygunTarihler.Select(t => t.ToString("yyyy-MM-dd"))); // Takvim için format
         }
+
         [HttpPost]
         public IActionResult GetSalon()
         {

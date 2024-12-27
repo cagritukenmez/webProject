@@ -36,14 +36,10 @@
                 }
                 
                 <td>
-                    @if (randevu.randevuTarihi > DateTime.Now && ViewBag.rol == "Admin"){
-                        <form asp-action="RandevuSil" method="get" style="display:inline;">
-                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
-                            <button type="submit" class="btn btn-danger">Sil</button>
-                        </form>
-                        <form asp-action="RandevuDuzenle" method="get" style="display:inline;">
-                            <input type="hidden" name="personelID" value="@randevu.randevuID" />
-                            <button type="submit" class="btn btn-dark">Duzenle</button>
+                    @if (randevu.randevuTarihi.Date < DateTime.Now.Date || ViewBag.rol == "Admin"){
+                        <form asp-controller="Randevu" asp-action="RandevuOnay" method="post" style="display:inline;">
+                            <input type="hidden" name="randevuID" value="@randevu.randevuID" />
+                            <button type="submit" class="btn btn-light">Onay</button>
                         </form>
                     }
                 </td>

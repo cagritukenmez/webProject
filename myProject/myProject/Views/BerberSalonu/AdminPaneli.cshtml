@@ -41,7 +41,7 @@
                         <input type="hidden" name="salonID" value="@salon.salonID" />
                         <button type="submit" class="btn btn-dark">Uygun Günleri Goruntule</button>
                     </form>
-                    <form asp-controller="Randevu" asp-action="RandevuGoruntule2" method="get" style="display:inline;">
+                    <form asp-controller="Randevu" asp-action="RandevuGoruntule" method="get" style="display:inline;">
                         <input type="hidden" name="salonID" value="@salon.salonID" />
                         <button type="submit" class="btn btn-secondary">Randevu Goruntule</button>
                     </form>
@@ -50,3 +50,6 @@
         }
     </tbody>
 </table>
+<form asp-controller="BerberSalonu" asp-action="BerberSalonuEkle" method="get" style="display:inline;">
+    <button type="submit" class="btn btn-secondary">Berber salonu ekle</button>
+</form>

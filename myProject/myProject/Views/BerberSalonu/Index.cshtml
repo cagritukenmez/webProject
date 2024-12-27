@@ -1,34 +1,35 @@
-﻿    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Berber Salonu</title>
-    </head>
+﻿@{
+    ViewData["Title"] = "Berber Salonu Anasayfa";
+}
 
-    <body>
-        <header>
-            <div style="position: absolute; top: 10px; right: 10px;">
-                @if (ViewBag.IsLoggedIn == false)
-                {
-                    <a asp-controller="Kullanıcı" asp-action="KayitOl" class="btn btn-primary">Kayıt Ol</a>
-                    <a asp-controller="Kullanıcı" asp-action="GirisYap" class="btn btn-light">Giriş Yap</a>
-                }
-                else
-                {
-                    @if(ViewBag.Role == "Admin"){
-                        <a asp-action="AdminPaneli" class="btn btn-dark" >Admin Paneli</a>
-                    }
-                    else {
-                        <a asp-controller="Randevu" asp-action="RandevduAl" class="btn btn-success">Randevu Al</a>
-                    }
-                    <a asp-controller="Randevu" asp-action="RandevuGoruntule" class="btn btn-success">Randevu Goruntule</a>
-                    <a asp-controller="Kullanıcı" asp-action="CikisYap" class="btn btn-danger" >Çıkış Yap</a>
-                }
-            </div>
-        </header>
-        <main>
-        <div class="alert-danger"> @TempData["msj"] </div>
-            <h1>Berber Salonu Anasayfa</h1>
-            <p>Buraya ana içerik gelecek...</p>
-        </main>
-    </body>
-    </html>
+<div class="jumbotron text-center bg-light p-5">
+    <h1 class="display-4">Berber Salonu Anasayfa</h1>
+    <p class="lead">Buraya ana içerik gelecek...</p>
+    <hr class="my-4">
+    @if(ViewBag.IsLoggedIn == false){
+        <p>Randevu almak için aşağıdaki butonları kullanabilirsiniz.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Randevu" asp-action="RandevduAl" role="button">Randevu Al</a>
+        <a class="btn btn-secondary btn-lg" asp-controller="Randevu" asp-action="RandevuGoruntule" role="button">Randevularımı Görüntüle</a>
+    }
+</div>
+
+<div class="alert alert-danger mt-3" role="alert">
+    @TempData["msj"]
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Hizmetlerimiz</h2>
+            <p>Berber salonumuzda sunulan hizmetler hakkında bilgi verin.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Çalışma Saatlerimiz</h2>
+            <p>Çalışma saatlerimiz ve randevu saatleri hakkında bilgi verin.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>İletişim</h2>
+            <p>İletişim bilgileri ve adres detayları.</p>
+        </div>
+    </div>
+</div>

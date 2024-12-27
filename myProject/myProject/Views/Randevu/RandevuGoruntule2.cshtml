@@ -36,19 +36,14 @@
                     <td>Onaylanmadı</td>
                 }
                 <td>
-                    <form asp-action="RandevuSil" method="get" style="display:inline;">
-                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
-                        <button type="submit" class="btn btn-danger">Sil</button>
-                    </form>
-                    <form asp-action="RandevuDuzenle" method="get" style="display:inline;">
-                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
-                        <button type="submit" class="btn btn-dark">Duzenle</button>
-                    </form>
-
-                    <form asp-controller="Randevu" asp-action="RandevuOnay" method="post" style="display:inline;">
-                        <input type="hidden" name="randevuID" value="@randevu.randevuID" />
-                        <button type="submit" class="btn btn-light">Onay</button>
-                    </form>
+                    @if(randevu.randevuTarihi.Date > DateTime.Today.Date)
+                    {
+                        <form asp-controller="Randevu" asp-action="RandevuOnay" method="post" style="display:inline;">
+                            <input type="hidden" name="randevuID" value="@randevu.randevuID" />
+                            <button type="submit" class="btn btn-light">Onay</button>
+                        </form>
+                    }
+                    
                 </td>
             </tr>
         }
