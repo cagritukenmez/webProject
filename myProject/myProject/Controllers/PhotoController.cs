@@ -1,62 +1,150 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 
 namespace myProject.Controllers
 {
-    [ApiController] // Bu satır API controller'ı işaret eder, ancak MVC controller'ı için gereksizdir
-    [Route("api/[controller]")]
-    public class PhotoController : Controller // ControllerBase yerine Controller sınıfı kullanılmalı
+    public class PhotoController : Controller
     {
-        public class PhotoResponse
+        private const string API_KEY = "693a981769msh95695d401172ee2p188bb6jsn2e321249a267";
+        private const string API_HOST = "hairstyle-changer-pro.p.rapidapi.com";
+
+        public class ApiResponse
         {
-            public string OutputImage1 { get; set; }
-            public string OutputImage2 { get; set; }
+            public int error_code { get; set; }
+            public string task_id { get; set; }
+            public string task_type { get; set; }
         }
 
-        [HttpPost("UploadPhoto")]
+        public class ResultResponse
+        {
+            public int error_code { get; set; }
+            public string output_image { get; set; }
+            public string output_url { get; set; }
+        }
+
+        // Index sayfasını göster
+
+        // Fotoğraf yükleme işlemi
+        [HttpPost]
         public async Task<IActionResult> UploadPhoto(IFormFile photo)
         {
-            if (photo == null || photo.Length == 0)
+            try
             {
-                return BadRequest("Lütfen bir fotoğraf yükleyin.");
-            }
-
-            using var memoryStream = new MemoryStream();
-            await photo.CopyToAsync(memoryStream);
-            var byteArray = memoryStream.ToArray();
-
-            using var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://hairstyle-changer-pro.p.rapidapi.com/facebody/editing/hairstyle-pro"),
-                Headers =
+                if (photo == null || photo.Length == 0)
                 {
-                    { "x-rapidapi-key", "41e6f10b85msh464209aa709edc0p1719b5jsn5c006fed8967" },
-                    { "x-rapidapi-host", "hairstyle-changer-pro.p.rapidapi.com" },
-                },
-                Content = new ByteArrayContent(byteArray)
-            };
-            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    TempData["Error"] = "Lütfen bir fotoğraf yükleyin.";
+                    return RedirectToAction("Index","BerberSalonu");
+                }
 
-            using var response = await client.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                return BadRequest("API isteği sırasında bir hata oluştu.");
+                using var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri("https://hairstyle-changer-pro.p.rapidapi.com/facebody/editing/hairstyle-pro"),
+                    Headers =
+                    {
+                        { "x-rapidapi-key", API_KEY },
+                        { "x-rapidapi-host", API_HOST },
+                    }
+                };
+
+                var multipartContent = new MultipartFormDataContent();
+
+                // Task Type
+                var taskTypeContent = new StringContent("async");
+                taskTypeContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "task_type"
+                };
+                multipartContent.Add(taskTypeContent);
+
+                // Image
+                using var memoryStream = new MemoryStream();
+                await photo.CopyToAsync(memoryStream);
+                var imageContent = new ByteArrayContent(memoryStream.ToArray());
+                imageContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "image",
+                    FileName = photo.FileName
+                };
+                multipartContent.Add(imageContent);
+
+                // Hair Style
+                var hairStyleContent = new StringContent("BuzzCut");
+                hairStyleContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "hair_style"
+                };
+                multipartContent.Add(hairStyleContent);
+
+                // Color
+                var colorContent = new StringContent("platinumBlonde");
+                colorContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "color"
+                };
+                multipartContent.Add(colorContent);
+
+                // Image Size
+                var sizeContent = new StringContent("2");
+                sizeContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "image_size"
+                };
+                multipartContent.Add(sizeContent);
+
+                request.Content = multipartContent;
+
+                using var response = await client.SendAsync(request);
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    TempData["Error"] = $"API isteği başarısız: {responseContent}";
+                    return RedirectToAction("Index", "BerberSalonu");
+                }
+
+                var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseContent);
+
+                if (apiResponse?.task_id != null)
+                {
+                    // İşlemin tamamlanması için bekle
+                    await Task.Delay(5000);
+
+                    // Sonuçları al
+                    var resultRequest = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri($"https://hairstyle-changer-pro.p.rapidapi.com/facebody/editing/hairstyle-pro?task_id={apiResponse.task_id}"),
+                        Headers =
+                        {
+                            { "x-rapidapi-key", API_KEY },
+                            { "x-rapidapi-host", API_HOST },
+                        }
+                    };
+
+                    using var resultResponse = await client.SendAsync(resultRequest);
+                    var resultContent = await resultResponse.Content.ReadAsStringAsync();
+
+                    if (!resultResponse.IsSuccessStatusCode)
+                    {
+                        TempData["Error"] = $"Sonuç alma başarısız: {resultContent}";
+                        return RedirectToAction("Index", "BerberSalonu");
+                    }
+
+                    var result = JsonConvert.DeserializeObject<ResultResponse>(resultContent);
+                    return View("Result", result);
+                }
+
+                TempData["Error"] = "Task ID alınamadı.";
+                return RedirectToAction("Index", "BerberSalonu");
             }
-
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var photoResponse = JsonConvert.DeserializeObject<PhotoResponse>(jsonResponse);
-
-            if (photoResponse == null || string.IsNullOrEmpty(photoResponse.OutputImage1) || string.IsNullOrEmpty(photoResponse.OutputImage2))
+            catch (Exception ex)
             {
-                return BadRequest("API'den geçerli bir fotoğraf yanıtı alınamadı.");
+                TempData["Error"] = $"Bir hata oluştu: {ex.Message}";
+                return RedirectToAction("Index", "BerberSalonu");
             }
-
-            // Fotoğrafları Result view'ine gönder
-            return View("Result", photoResponse); // Burada View() kullanılabilir
         }
     }
 }

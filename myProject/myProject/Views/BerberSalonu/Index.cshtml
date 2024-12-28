@@ -49,11 +49,26 @@
             </div>
         }
         <div class="col-md-4">
-
-            <form id="uploadForm" enctype="multipart/form-data">
-                <input type="file" id="photo" name="photo" />
-                <button type="button" onclick="uploadPhoto()">Yükle</button>
-            </form>
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <h3 >Fotoğraf Yükle</h3>
+                </div>
+                <div class="card-body bg-dark">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["Error"]
+                        </div>
+                    }
+                    <form asp-controller="Photo" asp-action="UploadPhoto" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="photo">Fotoğraf Seçin</label>
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary mt-3">Yükle</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -27,6 +27,7 @@ namespace myProject.Controllers
                 }
 
             }
+            
             return RedirectToAction("Index","BerberSalonu");
         }
         [HttpPost]
@@ -79,6 +80,8 @@ namespace myProject.Controllers
                 ViewBag.Role = kullanici.rol;
                 if(kullanici != null)
                 {
+
+                    ViewBag.IsLoggedIn = true;
                     var randevular = _context.Randevular
                         .Where(r => r.kullaniciID == kullaniciID)
                         .Include(r => r.Berbersalonu)
@@ -88,7 +91,6 @@ namespace myProject.Controllers
                     if(kullanici.rol == "Admin")
                     {
                         ViewBag.Role = "Admin";
-                        ViewBag.IsLoggedIn = true;
                         randevular = _context.Randevular
                             .Include(r => r.Berbersalonu)
                             .Include(r => r.personel)

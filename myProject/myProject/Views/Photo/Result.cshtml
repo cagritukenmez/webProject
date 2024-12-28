@@ -1,11 +1,38 @@
-﻿@model myProject.Controllers.PhotoController.PhotoResponse
+﻿@model myProject.Controllers.PhotoController.ResultResponse
 
-<h2>API'den Dönen Fotoğraflar</h2>
-
-<div>
-    <h3>Fotoğraf 1:</h3>
-    <img src="data:image/jpeg;base64,@Model.OutputImage1" alt="Çıktı Fotoğraf 1" style="max-width: 300px;">
-
-    <h3>Fotoğraf 2:</h3>
-    <img src="data:image/jpeg;base64,@Model.OutputImage2" alt="Çıktı Fotoğraf 2" style="max-width: 300px;">
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>İşlenmiş Fotoğraf</h3>
+                </div>
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(Model.output_image))
+                    {
+                        <img src="data:image/jpeg;base64,@Model.output_image"
+                             alt="İşlenmiş Fotoğraf"
+                             class="img-fluid"
+                             style="max-width: 100%;">
+                    }
+                    else if (!string.IsNullOrEmpty(Model.output_url))
+                    {
+                        <img src="@Model.output_url"
+                             alt="İşlenmiş Fotoğraf"
+                             class="img-fluid"
+                             style="max-width: 100%;">
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            Fotoğraf işlenemedi.
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-center">
+                    <a href="@Url.Action("Index", "Photo")" class="btn btn-primary">Yeni Fotoğraf Yükle</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,18 +1,1 @@
-[
-  {
-    "ContainingType": "myProject.Controllers.PhotoController",
-    "Method": "UploadPhoto",
-    "RelativePath": "api/Photo/UploadPhoto",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "photo",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  }
-]
+[]
