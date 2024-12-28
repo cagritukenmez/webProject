@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\controllers\\hizmetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|c:\\users\\grfsp\\onedrive\\belgeler\\github\\webproject\\myproject\\myproject\\views\\berbersalonu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{EF8ADECD-F935-453F-A4AA-983B7A178D12}|myProject\\myProject.csproj|solutionrelative:myproject\\views\\berbersalonu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HizmetController.cs",
+              "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeDocumentMoniker": "myProject\\Controllers\\HizmetController.cs",
+              "ToolTip": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\HizmetController.cs",
+              "RelativeToolTip": "myProject\\Controllers\\HizmetController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAAAIgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T19:32:53.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\BerberSalonu\\Index.cshtml",
               "RelativeDocumentMoniker": "myProject\\Views\\BerberSalonu\\Index.cshtml",
@@ -43,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Result.cshtml",
               "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Views\\Photo\\Result.cshtml",
               "RelativeDocumentMoniker": "myProject\\Views\\Photo\\Result.cshtml",
@@ -51,12 +68,11 @@
               "RelativeToolTip": "myProject\\Views\\Photo\\Result.cshtml",
               "ViewState": "AgIAAAkAAAAAAAAAAAAYwCUAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-28T18:19:43.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-28T18:19:43.432Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PhotoController.cs",
               "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\PhotoController.cs",
               "RelativeDocumentMoniker": "myProject\\Controllers\\PhotoController.cs",
@@ -64,12 +80,11 @@
               "RelativeToolTip": "myProject\\Controllers\\PhotoController.cs",
               "ViewState": "AgIAAHMAAAAAAAAAAAAAAIYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T18:18:28.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-28T18:18:28.52Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RandevuController.cs",
               "DocumentMoniker": "C:\\Users\\grfsp\\OneDrive\\Belgeler\\GitHub\\webProject\\myProject\\myProject\\Controllers\\RandevuController.cs",
               "RelativeDocumentMoniker": "myProject\\Controllers\\RandevuController.cs",
@@ -77,8 +92,7 @@
               "RelativeToolTip": "myProject\\Controllers\\RandevuController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAIwB4AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T16:24:12.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-28T16:24:12.27Z"
             }
           ]
         }

@@ -22,6 +22,7 @@ namespace myProject.Controllers
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
             ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var personel= _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return RedirectToAction("AdminPaneli","BerberSalonu");
@@ -43,7 +44,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
-
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
             if (hizmet == null) return NotFound();
             return View(hizmet);
@@ -91,7 +93,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
-
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return NotFound();
             TempData["msj"] = personel.isim + " " + personel.soyisim;
@@ -130,7 +133,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
-
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
             var hizmet = _context.Hizmetler.FirstOrDefault(k => k.hizmetID == hizmetID);
             return View(hizmet);
         }
