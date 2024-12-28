@@ -7,36 +7,65 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/myProject.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #343a40; /* Koyu gri bir arka plan rengi */
+            color: #ffffff; /* Varsayılan metin rengi beyaz */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="BerberSalonu" asp-action="Index">Ana Sayfa</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+
+                @if (ViewBag.salonlar != null)
+                {
+                    <li class="nav-item dropdown" style="list-style-type: none;">
+                        <a class="nav-link dropdown-toggle" href="#" id="berberSalonlariDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff;">
+                            Berber Salonları
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="berberSalonlariDropdown">
+                            @foreach (var salon in ViewBag.salonlar)
+                            {
+                                <li><a class="dropdown-item" asp-controller="BerberSalonu" asp-action="SalonGoster" asp-route-salonID="@salon.salonID">@salon.salonAd</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+               
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        @if(ViewBag.IsLoggedIn == false){
+                        @if (ViewBag.IsLoggedIn != true)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Kullanıcı" asp-action="GirisYap">Giriş Yap</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Kullanıcı" asp-action="KayitOl">Kayıt Ol</a>
                             </li>
-                            
+
                         }
-                        else{
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Kullanıcı" asp-action="CikisYap">Çıkış Yap</a>
-                            </li>
-                            @if(ViewBag.Role == "Admin"){
+                        else
+                        {
+                            @if (ViewBag.Role == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Randevu" asp-action="RandevuGoruntule">RandevulariListele</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="BerberSalonu" asp-action="AdminPaneli">Admin Paneli</a>
                                 </li>
                             }
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Kullanıcı" asp-action="CikisYap">Çıkış Yap</a>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -49,9 +78,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted mt-4">
-        <div class="container text-center">
-            &copy; 2024 - myProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-dark text-white mt-4">
+        <div class="container text-center py-3">
+            &copy; 2024 - myProject - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

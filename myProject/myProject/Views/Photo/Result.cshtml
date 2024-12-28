@@ -1,0 +1,11 @@
+﻿@model myProject.Controllers.PhotoController.PhotoResponse
+
+<h2>API'den Dönen Fotoğraflar</h2>
+
+<div>
+    <h3>Fotoğraf 1:</h3>
+    <img src="data:image/jpeg;base64,@Model.OutputImage1" alt="Çıktı Fotoğraf 1" style="max-width: 300px;">
+
+    <h3>Fotoğraf 2:</h3>
+    <img src="data:image/jpeg;base64,@Model.OutputImage2" alt="Çıktı Fotoğraf 2" style="max-width: 300px;">
+</div>

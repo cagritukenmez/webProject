@@ -4,6 +4,7 @@ using myProject.Models;
 
 namespace myProject.Controllers
 {
+
     public class HizmetController : Controller
     {
         private readonly myyDbContext _context;
@@ -20,6 +21,7 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
 
             var personel= _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return RedirectToAction("AdminPaneli","BerberSalonu");

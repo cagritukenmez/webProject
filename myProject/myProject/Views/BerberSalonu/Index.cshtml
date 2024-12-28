@@ -1,35 +1,87 @@
-﻿@{
-    ViewData["Title"] = "Berber Salonu Anasayfa";
-}
+﻿
 
-<div class="jumbotron text-center bg-light p-5">
-    <h1 class="display-4">Berber Salonu Anasayfa</h1>
+<div class="jumbotron text-center bg-dark text-white p-5">
+    @if(ViewBag.salon != null)
+    {
+        <h1 class="display-4">@ViewBag.salon.salonAd Anasayfa</h1>
+    }
+    else
+    {
+
+        <h1 class="display-4">Berber Salonu Anasayfa</h1>
+    }
     <p class="lead">Buraya ana içerik gelecek...</p>
     <hr class="my-4">
-    @if(ViewBag.IsLoggedIn == false){
+    @if(ViewBag.Role == "Member")
+    {   
+
         <p>Randevu almak için aşağıdaki butonları kullanabilirsiniz.</p>
-        <a class="btn btn-primary btn-lg" asp-controller="Randevu" asp-action="RandevduAl" role="button">Randevu Al</a>
-        <a class="btn btn-secondary btn-lg" asp-controller="Randevu" asp-action="RandevuGoruntule" role="button">Randevularımı Görüntüle</a>
+        <a class="btn btn-success btn-lg" asp-controller="Randevu" asp-action="RandevduAl" role="button">Randevu Al</a>
+        <a class="btn btn-success btn-lg" asp-controller="Randevu" asp-action="RandevuGoruntule" role="button">Randevularım</a>
     }
 </div>
 
-<div class="alert alert-danger mt-3" role="alert">
-    @TempData["msj"]
-</div>
+@if (TempData["msj"] != null)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @TempData["msj"]
+    </div>
+}
 
 <div class="container mt-4">
     <div class="row">
+        @if(ViewBag.salon != null)
+        {
+            <div class="col-md-4">
+                <h2>Hizmetlerimiz</h2>
+                <p>Berber salonumuzda sunulan hizmetler hakkında bilgi verin.</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Çalışma Saatlerimiz</h2>
+                <p> Başlangıç Saati : @ViewBag.salon.baslangicSaati</p>
+                <p>  Bitiş Saati    : @ViewBag.salon.bitisSaati</p>
+            </div>
+            <div class="col-md-4">
+                <h2>İletişim</h2>
+                <p> Adres Detayları : @ViewBag.salon.salonAdres</p>
+                <p> Telefon Numarası: @ViewBag.salon.salonNumara</p>
+                <p>  Eposta Adresi  : @ViewBag.salon.salonEposta</p>
+            </div>
+        }
         <div class="col-md-4">
-            <h2>Hizmetlerimiz</h2>
-            <p>Berber salonumuzda sunulan hizmetler hakkında bilgi verin.</p>
-        </div>
-        <div class="col-md-4">
-            <h2>Çalışma Saatlerimiz</h2>
-            <p>Çalışma saatlerimiz ve randevu saatleri hakkında bilgi verin.</p>
-        </div>
-        <div class="col-md-4">
-            <h2>İletişim</h2>
-            <p>İletişim bilgileri ve adres detayları.</p>
+
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="photo" name="photo" />
+                <button type="button" onclick="uploadPhoto()">Yükle</button>
+            </form>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+    async function uploadPhoto() {
+        const formData = new FormData();
+        const photo = document.getElementById('photo').files[0];
+        formData.append("photo", photo);
+
+        try {
+            const response = await fetch('/api/Photo/UploadPhoto', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                // Fotoğrafları ekrana yerleştir
+                // Bu kısmı, Result.cshtml'e yönlendirme için kullanmak isteyebilirsiniz.
+                window.location.href = '/Photo/Result';  // API sonucu geldikten sonra yönlendirme
+            } else {
+                alert("Fotoğraf yükleme sırasında bir hata oluştu.");
+            }
+        } catch (error) {
+            alert("Bir hata meydana geldi: " + error.message);
+        }
+    }
+</script>
+
+}

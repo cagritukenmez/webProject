@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVyYmVyU2Fsb251XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/BerberSalonu/SalonPara.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVyYmVyU2Fsb251XFNhbG9uUGFyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Hizmet/HizmetDuzenle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGl6bWV0XEhpem1ldER1emVubGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,6 +88,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Personel/PersonelSil.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uZWxcUGVyc29uZWxTaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Photo/Result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvdG9cUmVzdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/grfsp/OneDrive/Belgeler/GitHub/webProject/myProject/myProject/Views/Randevu/RandevduAl.cshtml]

@@ -20,13 +20,13 @@
         @foreach (var randevu in Model)
         {
             <tr>
-                <td>@randevu.randevuTarihi.ToString("dd-MM-yyyy")</td>
-                <td>@randevu.randevuSaati</td>
-                <td>@randevu.Berbersalonu.salonAd</td>
-                <td>@randevu.personel.isim.ToUpper() @randevu.personel.soyisim.ToUpper()</td>
-                <td>@randevu.hizmet.hizmetAdi</td>
-                <td>@randevu.hizmet.hizmetSuresi</td>
-                <td>@randevu.hizmet.hizmetFiyat</td>
+                <td style="color:#ffffff">@randevu.randevuTarihi.ToString("dd-MM-yyyy")</td>
+                <td style="color:#ffffff">@randevu.randevuSaati</td>
+                <td style="color:#ffffff">@randevu.Berbersalonu.salonAd</td>
+                <td style="color:#ffffff">@randevu.personel.isim.ToUpper() @randevu.personel.soyisim.ToUpper()</td>
+                <td style="color:#ffffff">@randevu.hizmet.hizmetAdi</td>
+                <td style="color:#ffffff">@randevu.hizmet.hizmetSuresi</td>
+                <td style="color:#ffffff">@randevu.hizmet.hizmetFiyat</td>
                 @if (randevu.onaylimi)
                 {
                     <td>Onaylandı</td>

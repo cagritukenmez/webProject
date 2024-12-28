@@ -7,41 +7,44 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card bg-dark">
                 <div class="card-header text-center">
                     <h3>Kayıt Ol</h3>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-danger" role="alert">@TempData["msj"]</div>
+                    @if (TempData["msj"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">@TempData["msj"]</div>
+                    }
                     <form method="post" asp-action="KayitOl">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="kullaniciAdi" class="control-label"></label>
-                            <input asp-for="kullaniciAdi" class="form-control" />
+                            <input asp-for="kullaniciAdi" class="form-control" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;" />
                             <span asp-validation-for="kullaniciAdi" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="kullaniciSifre" class="control-label"></label>
-                            <input asp-for="kullaniciSifre" class="form-control" type="password" />
+                            <input asp-for="kullaniciSifre" class="form-control" type="password" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;" />
                             <span asp-validation-for="kullaniciSifre" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="eposta" class="control-label"></label>
-                            <input asp-for="eposta" class="form-control" />
+                            <input asp-for="eposta" class="form-control" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;" />
                             <span asp-validation-for="eposta" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="telNo" class="control-label"></label>
-                            <input asp-for="telNo" class="form-control" />
+                            <input asp-for="telNo" class="form-control" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;" />
                             <span asp-validation-for="telNo" class="text-danger"></span>
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" value="Kayıt Ol" class="btn btn-primary" />
+                            <input type="submit" value="Kayıt Ol" class="btn btn-secondary" />
                         </div>
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <a asp-controller="Kullanıcı" asp-action="GirisYap" class="btn btn-link">Zaten hesabınız var mı? Giriş Yapın</a>
+                    <a asp-controller="Kullanıcı" asp-action="GirisYap" class="btn btn-link" style="color:#ffffff";>Zaten hesabınız var mı? Giriş Yapın</a>
                 </div>
             </div>
         </div>

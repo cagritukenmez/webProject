@@ -34,16 +34,23 @@ namespace myProject.Controllers
         {
             var tarihKontrol = _context.UygunTarih.FirstOrDefault(tk => tk.salonID == salonID && tk.Date.Date == randevuTarihi.Date);
             if (tarihKontrol == null) return RedirectToAction("Index","BerberSalonu");
-            if(tarihKontrol.IsAvailable == false) {
+            if(tarihKontrol.IsAvailable == false) {// tarih kontrol tablosunda bu salona ait bir gün eğer kapalı değilse bugün kapalı hatası döndür
                 TempData["msj"] = "Bu Gün Kapalı!.";
-                return RedirectToAction("Index","BerberSalonu");
-            }
-            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
-            var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati && tarihKontrol.IsAvailable == true);
-            if (kontrol.Any())
-            {
                 return RedirectToAction("RandevuAl");
             }
+            var kullaniciIDCookie = Request.Cookies["KullaniciID"];
+            var kontrol = _context.Randevular.Where(k => k.randevuTarihi == randevuTarihi && k.randevuSaati == randevuSaati && k.salonID == salonID);
+            if (kontrol.Any())
+            {
+                TempData["msj"] = "Seçtiğiniz saatte zaten bir randevu bulunmaktadır. ";
+                return RedirectToAction("RandevuAl");
+            }
+            if (DateTime.Now.Date > randevuTarihi.Date)
+            {
+                TempData["msj"] = "Geçmiş bir günden randevu alınamaz!!!";
+                return RedirectToAction("RandevuAl");
+            }
+
             var randevum = new Randevu
             {
                 randevuTarihi = randevuTarihi,
@@ -63,12 +70,13 @@ namespace myProject.Controllers
         [HttpGet]
         public IActionResult RandevuGoruntule()
         {
+
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
             if (kullaniciIDCookie != null)
             {
                 int kullaniciID = int.Parse(kullaniciIDCookie);
                 var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
-                ViewBag.rol = kullanici.rol;
+                ViewBag.Role = kullanici.rol;
                 if(kullanici != null)
                 {
                     var randevular = _context.Randevular
@@ -79,6 +87,8 @@ namespace myProject.Controllers
                         .ToList();
                     if(kullanici.rol == "Admin")
                     {
+                        ViewBag.Role = "Admin";
+                        ViewBag.IsLoggedIn = true;
                         randevular = _context.Randevular
                             .Include(r => r.Berbersalonu)
                             .Include(r => r.personel)
@@ -93,6 +103,8 @@ namespace myProject.Controllers
         [HttpPost]
         public IActionResult RandevuOnay(int randevuID)
         {
+
+
             var randevu = _context.Randevular.FirstOrDefault(r => r.randevuID == randevuID);
             if(randevu != null)
             {
@@ -113,6 +125,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var randevular = _context.Randevular.Where(r => r.salonID == salonID)
                 .Include(r => r.personel)

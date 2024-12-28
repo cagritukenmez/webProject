@@ -45,6 +45,10 @@
                         <input type="hidden" name="salonID" value="@salon.salonID" />
                         <button type="submit" class="btn btn-secondary">Randevu Goruntule</button>
                     </form>
+                    <form asp-action="SalonPara" method="get" style="display:inline;">
+                        <input type="hidden" name="salonID" value="@salon.salonID" />
+                        <button type="submit" class="btn btn-secondary">Para Goruntule</button>
+                    </form>
                 </td>
             </tr>
         }

@@ -16,11 +16,13 @@ namespace myProject.Controllers
         public IActionResult UygunTarihAc(int salonID)
         {
             var kullaniciIDCookie = Request.Cookies["KullaniciID"];
-            if (kullaniciIDCookie == null) return RedirectToAction("Index","BerberSalonu");
+            if (kullaniciIDCookie == null) return RedirectToAction("Index", "BerberSalonu");
             int kullaniciID = int.Parse(kullaniciIDCookie);
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var salon = _context.BerberSalonları.FirstOrDefault(s => s.salonID == salonID);
             if(salon != null)
@@ -67,6 +69,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var salon = _context.BerberSalonları.FirstOrDefault(s => s.salonID == salonID);
             if(salon == null) return RedirectToAction("AdminPaneli", "BerberSalonu");
@@ -90,5 +94,6 @@ namespace myProject.Controllers
             }
             return RedirectToAction("UygunTarihGoruntule", new { salonID = salonID });
         }
+        
     }
 }

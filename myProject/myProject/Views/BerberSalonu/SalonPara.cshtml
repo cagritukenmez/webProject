@@ -1,0 +1,56 @@
+﻿@model SalonParaViewModel
+
+<div class="container mt-5">
+    <h3>@ViewData["salonAd"] Gelir Tablosu</h3>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="color: #ffffff">Personel \ Tarih</th>
+                @foreach (var tarih in Model.UygunTarihler)
+                {
+                    <th style="color: #ffffff">@tarih.ToString("yyyy-MM-dd")</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var personel in Model.Personeller)
+            {
+                <tr>
+                    <td style="color: #ffffff">@personel.Name</td>
+                    @foreach (var tarih in Model.UygunTarihler)
+                    {
+                        var randevu = Model.RandevuBilgileri
+                        .FirstOrDefault(r => r.PersonelID == personel.ID && r.Tarih == tarih);
+                        <td style="color: #ffffff">
+                            @(randevu != null ? randevu.ToplamUcret.ToString("N0") : "0") TL
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Günlük Gelirleri Alt Kısımda Gösterme -->
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Günlük Kazançlar</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="color: #ffffff">Tarih</th>
+                        <th style="color: #ffffff">Toplam Gelir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var gelir in Model.GunlukGelir)
+                    {
+                        <tr>
+                            <td style="color: #ffffff">@gelir.Tarih.ToString("yyyy-MM-dd")</td>
+                            <td style="color: #ffffff">@string.Format(new System.Globalization.CultureInfo("tr-TR"), "{0:N0} TL", gelir.ToplamGelir)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

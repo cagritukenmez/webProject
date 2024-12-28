@@ -1,54 +1,77 @@
 ﻿@model myProject.Models.Randevu
 
 
-<h2>Randevu Al</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="RandevuAl">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container mt-5 ">
+    <div class="row justify-content-center ">
+        <div class="col-md-6">
+            <div class="card bg-dark">
+                <div class="card-header text-center">
+                    <h3>Randevu Al</h3>
+                </div>
+                <div class="card-body">
+                    @if (TempData["msj"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">@TempData["msj"]</div>
+                    }
+                    <form asp-action="RandevuAl">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- Salon Seçimi -->
-            <div class="form-group">
-                <label asp-for="salonID" class="control-label">Berber Salonu</label>
-                <select asp-for="salonID" class="form-control" id="SalonSelect">
-                </select>
-                <span asp-validation-for="salonID" class="text-danger"></span>
-            </div>
+                        <!-- Salon Seçimi -->
+                        <div class="form-group">
+                            <label asp-for="salonID" class="control-label">Berber Salonu</label>
+                            <select asp-for="salonID" class="form-control" id="SalonSelect" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;">
+                            </select>
+                            <span asp-validation-for="salonID" class="text-danger"></span>
+                        </div>
 
-            <!-- Personel Seçimi -->
-            <div class="form-group">
-                <label asp-for="personelID" class="control-label">Personel</label>
-                <select asp-for="personelID" class="form-control" id="PersonelSelect">
-                </select>
-                <span asp-validation-for="personelID" class="text-danger"></span>
-            </div>
+                        <!-- Personel Seçimi -->
+                        <div class="form-group">
+                            <label asp-for="personelID" class="control-label">Personel</label>
+                            <select asp-for="personelID" class="form-control" id="PersonelSelect" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;">
+                            </select>
+                            <span asp-validation-for="personelID" class="text-danger"></span>
+                        </div>
 
-            <!-- Hizmet Seçimi -->
-            <div class="form-group">
-                <label asp-for="hizmetID" class="control-label">Hizmet</label>
-                <select asp-for="hizmetID" class="form-control" id="HizmetSelect">
-                </select>
-                <span asp-validation-for="hizmetID" class="text-danger"></span>
-            </div>
+                        <!-- Hizmet Seçimi -->
+                        <div class="form-group">
+                            <label asp-for="hizmetID" class="control-label">Hizmet</label>
+                            <select asp-for="hizmetID" class="form-control" id="HizmetSelect" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;">
+                            </select>
+                            <span asp-validation-for="hizmetID" class="text-danger"></span>
+                        </div>
 
-            <!-- Randevu Tarihi Seçimi -->
-            <div class="form-group">
-                <label asp-for="randevuTarihi" class="control-label">Randevu Tarihi</label>
-                <input asp-for="randevuTarihi" class="form-control" id="RandevuTarihi" />
-                <span asp-validation-for="randevuTarihi" class="text-danger"></span>
-            </div>
+                        <!-- Randevu Tarihi Seçimi -->
+                        <div class="form-group">
+                            <label asp-for="randevuTarihi" class="control-label">Randevu Tarihi</label>
+                            <input asp-for="randevuTarihi" class="form-control" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;" />
+                            <span asp-validation-for="randevuTarihi" class="text-danger"></span>
+                        </div>
 
-            <!-- Randevu Saati Seçimi -->
-            <div class="form-group">
-                <label asp-for="randevuSaati" class="control-label">Randevu Saati</label>
-                <input asp-for="randevuSaati" class="form-control" />
-                <span asp-validation-for="randevuSaati" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="randevuSaati" class="control-label">Randevu Saati</label>
+                            <select asp-for="randevuSaati" class="form-control" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;">
+                                @{
+                                    var startTime = new TimeSpan(9, 0, 0); // 09:00
+                                    var endTime = new TimeSpan(16, 0, 0); // 16:00
+                                    var interval = new TimeSpan(0, 20, 0); // 20 dakika
+
+                                    for (var time = startTime; time <= endTime; time = time.Add(interval))
+                                    {
+                                        var timeString = time.ToString(@"hh\:mm");
+                                        <option value="@timeString" style="background-color: #343a40; color: #ffffff; border: 1px solid #495057;">@timeString</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="randevuSaati" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Randevu Al" class="btn btn-secondary" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Randevu Al" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -113,23 +136,8 @@
         });
 
 
-        // Personel değiştiğinde uygun tarihleri yükle
-        $('#PersonelSelect').change(function () {
-            var personelID = $(this).val();
-            var salonID = $('#SalonSelect').val();
 
-            if (salonID && personelID) {
-                $.post('@Url.Action("GetUygunTarihler", "Randevu")', { salonID: salonID, personelID: personelID }, function (dates) {
-                    $('#RandevuTarihi').datepicker("destroy");
-                    var availableDates = dates.map(d => new Date(d));
-                    $('#RandevuTarihi').datepicker({
-                        beforeShowDay: function (date) {
-                            return [availableDates.some(d => d.toDateString() === date.toDateString()), ''];
-                        }
-                    });
-                });
-            }
-        });
+
 
         $(document).ready(function () {
             // Sayfa yüklendiğinde salonları getir

@@ -20,6 +20,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             ViewBag.salonID = salonID;
             return View();
@@ -55,6 +57,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var personelListesi = _context.Personeller.Where(p => p.salonID == salonID).ToList();
             ViewBag.salonID = salonID;
@@ -74,6 +78,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == Convert.ToInt32(personelID));
             if (personel == null) return NotFound();
@@ -118,6 +124,8 @@ namespace myProject.Controllers
             var kullanici = _context.Kullanıcı.FirstOrDefault(k => k.kullaniciID == kullaniciID);
             if (kullanici == null) return RedirectToAction("Index", "BerberSalonu");
             if (kullanici.rol == "Member") return RedirectToAction("Index", "BerberSalonu");
+            ViewBag.Role = "Admin";
+            ViewBag.IsLoggedIn = true;
 
             var personel = _context.Personeller.FirstOrDefault(k => k.personelID == personelID);
             if (personel == null) return NotFound();
